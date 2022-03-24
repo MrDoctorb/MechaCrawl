@@ -37,12 +37,12 @@ public class UnitController : MonoBehaviour, IComparable
 
     public virtual void StartTurn()
     {
-        move.DisplayMove();
+        move.Perform();
     }
 
     public virtual void Attack()
     {
-        attack.DisplayAttack();
+        attack.Perform();
     }
 
     public void EndTurn()

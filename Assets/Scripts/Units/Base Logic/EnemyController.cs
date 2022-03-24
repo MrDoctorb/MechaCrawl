@@ -44,13 +44,9 @@ public class EnemyController : UnitController
             Vector2[] validTiles = move.ValidTiles();
             option = new TurnOption(validTiles[Random.Range(0, validTiles.Length)], new Vector2[0]);
         }
-
-        print("Moving to " + option.movePos);
-
-
+        
         //Move to the required space
         move.SelectMoveTarget(option.movePos);
-
 
     }
 

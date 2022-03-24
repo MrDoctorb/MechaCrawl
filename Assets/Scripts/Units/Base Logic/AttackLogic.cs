@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zanespace;
 
-public abstract class AttackLogic : MonoBehaviour 
+public abstract class AttackLogic : ActionLogic 
 {
     List<UnitController> targets = new List<UnitController>();
     //TargetType type
@@ -14,7 +14,7 @@ public abstract class AttackLogic : MonoBehaviour
     //Probably just change this to a color value at some point
     public GameObject spaceSelect;
 
-    public void DisplayAttack()
+    public override void Perform()
     {
         foreach(Vector2[] tileGroup in ValidTiles(transform.position))
         {

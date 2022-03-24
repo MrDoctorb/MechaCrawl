@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Zanespace;
 
-public abstract class MoveLogic : MonoBehaviour
+public abstract class MoveLogic : ActionLogic
 {
     [SerializeField] protected int minRange, maxRange;
     [SerializeField] protected MoveType moveType;
@@ -18,7 +18,7 @@ public abstract class MoveLogic : MonoBehaviour
         myUnit = GetComponent<UnitController>();   
     }
 
-    public void DisplayMove()
+    public override void Perform()
     {
         foreach(Vector2 pos in ValidTiles())
         {
