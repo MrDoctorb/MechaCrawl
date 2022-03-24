@@ -109,7 +109,7 @@ public class DungeonGenerator : MonoBehaviour
                 Vector2Int pos = new Vector2Int(i, j);
                 if (AdjacentTiles(pos).Length == 0)
                 {
-                    Vector2Int[] path = FloodFill(pos); //ADD VECTOR2INT ZERO HERE TO CHANGE TO OTHER VERSION <-----------
+                    Vector2Int[] path = FloodFill(pos, Vector2Int.zero); //ADD VECTOR2INT ZERO HERE TO CHANGE TO OTHER VERSION <-----------
                     if (path.Length >= minPathLength)
                     {
                         /*foreach (Vector2Int newPos in path)
@@ -137,25 +137,33 @@ public class DungeonGenerator : MonoBehaviour
     Vector2Int[] FloodFill(Vector2Int pos, Vector2Int previousTileDir)
     {
         dungeonTiles[pos.x, pos.y] = new DungeonTile(pos, currentid, DungeonTileType.Hallway);
-        //Instantiate(tile, (Vector2)pos, Quaternion.identity).GetComponent<SpriteRenderer>().color = Color.blue;
 
         List<Vector2Int> attempts = new List<Vector2Int>();
-        attempts.Add(previousTileDir * -1);
 
         Vector2Int dir;
 
-        if (previousTileDir != Vector2Int.zero && Random.Range(0, 1f) < straightPathChance)
+        if (previousTileDir != Vector2Int.zero)
         {
-            dir = previousTileDir;
+            attempts.Add(previousTileDir * -1);
+
+            if (Random.Range(0, 1f) < straightPathChance)
+            {
+                dir = previousTileDir;
+                print("AA");
+            }
+            else
+            {
+                dir = DirectionToVector((Direction)Random.Range(0, 4));
+            }
         }
         else
         {
             dir = DirectionToVector((Direction)Random.Range(0, 4));
         }
 
-        for (int i = 0; i < 4; ++i)
+        while (attempts.Count < 4)
         {
-            DirectionToVector((Direction)Random.Range(0, 4));
+            // dir = DirectionToVector((Direction)Random.Range(0, 4));
             while (attempts.Contains(dir))
             {
                 dir = DirectionToVector((Direction)Random.Range(0, 4));
@@ -168,32 +176,7 @@ public class DungeonGenerator : MonoBehaviour
                 path.Add(pos);
                 return path.ToArray();
             }
-        }
-        return new Vector2Int[] { pos };
-    }
-
-    Vector2Int[] FloodFill(Vector2Int pos) // Need to figure out the difference of these two
-    {
-        dungeonTiles[pos.x, pos.y] = new DungeonTile(pos, currentid, DungeonTileType.Hallway);
-        //Instantiate(tile, (Vector2)pos, Quaternion.identity).GetComponent<SpriteRenderer>().color = Color.blue;
-
-        List<Vector2Int> attempts = new List<Vector2Int>();
-        for (int i = 0; i < 4; ++i)
-        {
-            Vector2Int dir = DirectionToVector((Direction)Random.Range(0, 4));
-
-            while (attempts.Contains(dir))
-            {
-                dir = DirectionToVector((Direction)Random.Range(0, 4));
-            }
-            attempts.Add(dir);
-            dir += pos;
-            if (!OutOfBounds(dir) && dungeonTiles[dir.x, dir.y] == null && AdjacentTiles(dir).Length == 1)
-            {
-                List<Vector2Int> path = new List<Vector2Int>(FloodFill(dir));
-                path.Add(pos);
-                return path.ToArray();
-            }
+            dir -= pos;
         }
         return new Vector2Int[] { pos };
     }
