@@ -7,12 +7,18 @@ public abstract class AttackLogic : ActionLogic
 {
     List<UnitController> targets = new List<UnitController>();
     //TargetType type
-    Effect[] effects;
+    [SerializeField] Effect[] effects;
     UnitController myUnit;
 
 
     //Probably just change this to a color value at some point
     public GameObject spaceSelect;
+
+    void Start()
+    {
+        effects = GetComponents<Effect>(); //This needs to be updated
+        myUnit = GetComponent<UnitController>();
+    }
 
     public override void Perform()
     {
@@ -63,12 +69,6 @@ public abstract class AttackLogic : ActionLogic
 
     protected abstract Vector2[] Pattern(Vector2 startPos);
 
-
-    void Start()
-    {
-        effects = GetComponents<Effect>();
-        myUnit = GetComponent<UnitController>();
-    }
 
     public void SelectAttackTargets(Vector2[] positions)
     {

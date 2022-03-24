@@ -7,10 +7,12 @@ using UnityEngine;
 public class EnemyController : UnitController
 {
     TurnOption option;
+    AttackLogic attack;
 
     protected override void EnterLevel()
     {
         MoveToTile(TileManager.RandomTile().transform.position);
+        attack = (AttackLogic)actions[0];
     }
 
     public override void StartTurn()
@@ -37,21 +39,22 @@ public class EnemyController : UnitController
         {
             //Choose target (Could be nearest, could be lowest health)
             option = possibleTargets[Random.Range(0, possibleTargets.Count)];
-            
+
         }
         else
         {
             Vector2[] validTiles = move.ValidTiles();
             option = new TurnOption(validTiles[Random.Range(0, validTiles.Length)], new Vector2[0]);
         }
-        
+
         //Move to the required space
         move.SelectMoveTarget(option.movePos);
 
     }
 
-    public override void Attack()
+    public override void SelectAction()
     {
+        //only has attack to select
         attack.SelectAttackTargets(option.attackGroup);
     }
 

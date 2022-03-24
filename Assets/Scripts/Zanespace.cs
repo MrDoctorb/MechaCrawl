@@ -8,6 +8,7 @@ namespace Zanespace
         public const int ACTIONTHRESHOLD = 10;
         public static UnitManager uManager;
         public static TileManager tManager;
+        public static ActionSelectMenu actionSelectMenu;
     }
 
     public static class Functions

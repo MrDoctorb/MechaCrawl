@@ -57,7 +57,10 @@ public abstract class MoveLogic : ActionLogic
             yield return new WaitForSeconds(.25f);
         }
 
-        myUnit.Attack();
+        if(myUnit.move == this)
+        {
+            myUnit.SelectAction();
+        }
     }
 
     public MoveType GetMoveType()

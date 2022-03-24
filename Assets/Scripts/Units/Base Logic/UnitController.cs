@@ -6,14 +6,26 @@ using Zanespace;
 
 public class UnitController : MonoBehaviour, IComparable
 {
-    protected MoveLogic move;
-    protected AttackLogic attack;
+    public MoveLogic move
+    {
+        private set
+        {
+            _move = value;
+        }
+        get
+        {
+            return _move;
+        }
+    }
+    [SerializeField] MoveLogic _move;
+    protected ActionLogic[] actions;
+    //protected AttackLogic attack; //Deprecated 
     //protected DeathLogic deathEffects;
 
     [SerializeField] int maxHP;
     public float speed;
     int hp;
-    public float actionPoints;
+    [System.NonSerialized] public float actionPoints;
     public Direction facing;
 
     public event Alert onMove;
@@ -23,9 +35,25 @@ public class UnitController : MonoBehaviour, IComparable
     {
         hp = maxHP;
         move = GetComponent<MoveLogic>();
-        attack = GetComponent<AttackLogic>();
+        actions = FindActions();
+        
+
+        //attack = GetComponent<AttackLogic>(); //Deprecated
         //deathEffects = GetComponents<Effect>();
         EnterLevel();
+    }
+
+    ActionLogic[] FindActions()
+    {
+        List<ActionLogic> tempActions = new List<ActionLogic>();
+        foreach (ActionLogic potentialAction in GetComponents<ActionLogic>())
+        {
+            if (potentialAction != move)
+            {
+                tempActions.Add(potentialAction);
+            }
+        }
+        return tempActions.ToArray();
     }
 
     protected virtual void EnterLevel()
@@ -40,9 +68,12 @@ public class UnitController : MonoBehaviour, IComparable
         move.Perform();
     }
 
-    public virtual void Attack()
+    public virtual void SelectAction()
     {
-        attack.Perform();
+        print(References.actionSelectMenu.name);
+        print(actions.Length);
+        References.actionSelectMenu.Display(actions, EndTurn);
+        //attack.Perform();
     }
 
     public void EndTurn()
@@ -83,7 +114,7 @@ public class UnitController : MonoBehaviour, IComparable
     {
         print("AH! I'm hit for " + dmg + "-" + name);
         hp -= dmg;
-        if(hp == 0)
+        if (hp == 0)
         {
 
         }
