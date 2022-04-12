@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackTileSelect : MonoBehaviour
+public class MultiTileSelect : MonoBehaviour
 {
-    public AttackLogic logic;
-    public AttackTileSelect[] tilesInSet;
+    public ActionLogic logic;
+    public MultiTileSelect[] tilesInSet;
 
     void OnMouseDown()
     {
@@ -15,9 +15,9 @@ public class AttackTileSelect : MonoBehaviour
             tiles[i] = tilesInSet[i].transform.position;
         }
 
-        logic.SelectAttackTargets(tiles);
+        logic.SelectTargets(tiles);
 
-        foreach (AttackTileSelect tileSelect in FindObjectsOfType<AttackTileSelect>())
+        foreach (MultiTileSelect tileSelect in FindObjectsOfType<MultiTileSelect>())
         {
             Destroy(tileSelect.gameObject);
         }

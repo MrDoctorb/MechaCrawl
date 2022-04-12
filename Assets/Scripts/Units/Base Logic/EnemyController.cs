@@ -48,14 +48,14 @@ public class EnemyController : UnitController
         }
 
         //Move to the required space
-        move.SelectMoveTarget(option.movePos);
+        move.SelectTarget(option.movePos);
 
     }
 
     public override void SelectAction()
     {
         //only has attack to select
-        attack.SelectAttackTargets(option.attackGroup);
+        attack.SelectTargets(option.attackGroup);
     }
 
 }

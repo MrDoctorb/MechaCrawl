@@ -4,10 +4,10 @@ using System.Linq;
 using UnityEngine;
 using Zanespace;
 
-
+[RequireComponent(typeof(Generator))]
 public class TileManager : MonoBehaviour
 {
-    [SerializeField] DungeonGenerator gen;
+    [SerializeField] Generator gen;
 
     public GameObject tileref;
 

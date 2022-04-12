@@ -6,14 +6,17 @@ using Zanespace;
 
 public class UnitManager : MonoBehaviour
 {
-    UnitController[] allUnits;
+    List<UnitController> allUnits = new List<UnitController>();
     List<UnitController> nextUnits;
     [SerializeField] Text tempTurnOrderDisplay;
 
-    void Start()
+    private void Awake()
     {
         References.uManager = this;
-        ReloadUnits();
+    }
+
+    void Start()
+    {
         CalculateNextUnits();
     }
 
@@ -27,34 +30,41 @@ public class UnitManager : MonoBehaviour
 
     public int AmountOfUnits()
     {
-        return allUnits.Length;
+        return allUnits.Count;
     }
 
-    public void ReloadUnits()
+    public void AddUnit(UnitController unit)
     {
+        if (allUnits.Contains(unit))
+        {
+            Debug.LogError(unit.name + " is already in the unit list");
+        }
+        else
+        {
+            allUnits.Add(unit);
+            print(unit.name + " added");
+        }
+    }
 
-        allUnits = FindObjectsOfType<UnitController>();
+    public void RemoveUnit(UnitController unit)
+    {
+        if (allUnits.Contains(unit))
+        {
+            allUnits.Remove(unit);
+        }
+        else
+        {
+            Debug.LogError(unit.name + " was not in the unit list");
+        }
     }
 
     void CalculateNextUnits()
     {
-        /* nextUnits = new List<UnitController>();
-         List<UnitController> tempList = new List<UnitController>(allUnits);
-
-         tempList.Sort();
-         if(tempList.Count >= 5)
-         {
-             nextUnits = tempList.GetRange(0, 5);
-         }
-         else
-         {
-             nextUnits = tempList.GetRange(0, tempList.Count);
-         }
-
-         foreach (UnitController unit in tempList)
-         {
-             //print(unit.name + " Turns till Go: " + unit.TurnsTillNextAction());
-         }*/
+        if(allUnits.Count <= 0)
+        {
+            Debug.LogError("There are no units to calculate");
+            return;
+        }
 
         string testOutput = "";
         nextUnits = new List<UnitController>();

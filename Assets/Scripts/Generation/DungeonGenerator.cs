@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zanespace;
 
-public class DungeonGenerator : MonoBehaviour
+public class DungeonGenerator : Generator
 {
     [SerializeField] int width, height;
 
@@ -26,7 +26,7 @@ public class DungeonGenerator : MonoBehaviour
     List<Vector2Int> idLinks = new List<Vector2Int>();
     int currentid = 0;
 
-    public DungeonTile[,] Generate()
+    public override DungeonTile[,] Generate()
     {
         dungeonTiles = new DungeonTile[width, height];
         MakeAllRooms();
@@ -149,7 +149,6 @@ public class DungeonGenerator : MonoBehaviour
             if (Random.Range(0, 1f) < straightPathChance)
             {
                 dir = previousTileDir;
-                print("AA");
             }
             else
             {

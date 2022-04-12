@@ -4,39 +4,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zanespace;
 
+[RequireComponent(typeof(MoveLogic))]
 public class UnitController : MonoBehaviour, IComparable
 {
-    public MoveLogic move
-    {
-        private set
-        {
-            _move = value;
-        }
-        get
-        {
-            return _move;
-        }
-    }
-    [SerializeField] MoveLogic _move;
+    public MoveLogic move { private set; get; }
     protected ActionLogic[] actions;
     //protected AttackLogic attack; //Deprecated 
     //protected DeathLogic deathEffects;
 
     [SerializeField] int maxHP;
     public float speed;
-    int hp;
+    public int hp { private set; get; }
     [System.NonSerialized] public float actionPoints;
     public Direction facing;
 
     public event Alert onMove;
     public event Alert onEndTurn;
+    public event Alert onTakeDamage;
+    public event Alert onHealthChange;
+
+    private void OnEnable()
+    {
+        References.uManager.AddUnit(this);
+    }
+
+    private void OnDisable()
+    {
+        References.uManager.RemoveUnit(this);
+    }
 
     void Start()
     {
-        hp = maxHP;
+        SetHealth(maxHP);
         move = GetComponent<MoveLogic>();
         actions = FindActions();
-        
+
 
         //attack = GetComponent<AttackLogic>(); //Deprecated
         //deathEffects = GetComponents<Effect>();
@@ -70,8 +72,6 @@ public class UnitController : MonoBehaviour, IComparable
 
     public virtual void SelectAction()
     {
-        print(References.actionSelectMenu.name);
-        print(actions.Length);
         References.actionSelectMenu.Display(actions, EndTurn);
         //attack.Perform();
     }
@@ -110,19 +110,50 @@ public class UnitController : MonoBehaviour, IComparable
         }
     }
 
+    /// <summary>
+    /// Causes the target to take an amount of damage.
+    /// Effects that trigger when damage is taken trigger after damage is dealt
+    /// and after checking if the unit has died.
+    /// A dead unit does not trigger damage effects.
+    /// </summary>
+    /// <param name="dmg"></param>
     public void TakeDamage(int dmg)
     {
+        if (dmg < 0)
+        {
+            dmg = 0;
+        }
+
         print("AH! I'm hit for " + dmg + "-" + name);
-        hp -= dmg;
+        SetHealth(hp - dmg);
+
         if (hp == 0)
         {
 
+            return;
         }
         else if (hp < 0)
         {
             gameObject.SetActive(false);
             Destroy(gameObject);
-            References.uManager.ReloadUnits();
+            return;
         }
+        onTakeDamage?.Invoke();
+    }
+
+    void Heal(int amount)
+    {
+        SetHealth(hp + amount);
+    }
+
+    void SetHealth(int amount)
+    {
+
+        hp = amount;
+        if (hp > maxHP)
+        {
+            hp = maxHP;
+        }
+        onHealthChange?.Invoke();
     }
 }

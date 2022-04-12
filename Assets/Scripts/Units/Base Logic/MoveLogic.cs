@@ -22,7 +22,7 @@ public abstract class MoveLogic : ActionLogic
     {
         foreach(Vector2 pos in ValidTiles())
         {
-            Instantiate(spaceSelect, pos, Quaternion.identity).GetComponent<MoveTileSelect>().logic = this;
+            Instantiate(spaceSelect, pos, Quaternion.identity).GetComponent<SingleTileSelect>().logic = this;
         }
     }
 
@@ -41,10 +41,10 @@ public abstract class MoveLogic : ActionLogic
 
     protected abstract Vector2[] Pattern();
 
-    public void SelectMoveTarget(Vector2 pos)
+    public override void SelectTargets(Vector2[] pos)
     {
         //This is bad implementation but it works for now
-        StartCoroutine(MovePath(PathFinder.Path(transform.position, pos, moveType)));
+        StartCoroutine(MovePath(PathFinder.Path(transform.position, pos[0], moveType)));
     }
 
     IEnumerator MovePath(Vector2[] path)

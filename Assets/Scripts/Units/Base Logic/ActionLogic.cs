@@ -7,4 +7,9 @@ public abstract class ActionLogic : MonoBehaviour
     public Sprite icon;
     public string actionName;
     public abstract void Perform();
+    public abstract void SelectTargets(Vector2[] targets);
+    public void SelectTarget(Vector2 pos)
+    {
+        SelectTargets(new Vector2[] { pos });
+    }
 }

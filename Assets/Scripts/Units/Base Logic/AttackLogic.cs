@@ -10,7 +10,6 @@ public abstract class AttackLogic : ActionLogic
     [SerializeField] Effect[] effects;
     UnitController myUnit;
 
-
     //Probably just change this to a color value at some point
     public GameObject spaceSelect;
 
@@ -24,16 +23,16 @@ public abstract class AttackLogic : ActionLogic
     {
         foreach(Vector2[] tileGroup in ValidTiles(transform.position))
         {
-            List<AttackTileSelect> tiles = new List<AttackTileSelect>();
+            List<MultiTileSelect> tiles = new List<MultiTileSelect>();
             foreach(Vector2 pos in tileGroup)
             {
 
-                AttackTileSelect tile = Instantiate(spaceSelect, pos, Quaternion.identity).GetComponent<AttackTileSelect>();
+                MultiTileSelect tile = Instantiate(spaceSelect, pos, Quaternion.identity).GetComponent<MultiTileSelect>();
                 tiles.Add(tile);
                 tile.logic = this;
             }
 
-            foreach (AttackTileSelect tile in tiles)
+            foreach (MultiTileSelect tile in tiles)
             {
                 tile.tilesInSet = tiles.ToArray();
             }
@@ -69,8 +68,7 @@ public abstract class AttackLogic : ActionLogic
 
     protected abstract Vector2[] Pattern(Vector2 startPos);
 
-
-    public void SelectAttackTargets(Vector2[] positions)
+    public override void SelectTargets(Vector2[] positions)
     {
         foreach(Vector2 pos in positions)
         {
