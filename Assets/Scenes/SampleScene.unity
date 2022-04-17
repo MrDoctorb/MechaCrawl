@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 777119964}
   - component: {fileID: 777119965}
   m_Layer: 0
-  m_Name: TileManager
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1128,7 +1128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151df1b3288faa241bc51dbf6ad192c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 4
 --- !u!114 &1480741517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1357,7 +1357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b85f11c058d96428fbe3324a4bbcb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 1
+  maxHP: 4
   speed: 5
   facing: 0
 --- !u!212 &1937417696
