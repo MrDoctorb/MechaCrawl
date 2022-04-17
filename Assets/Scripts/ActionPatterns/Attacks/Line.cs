@@ -3,9 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zanespace;
 
-public class AttackLine : AttackLogic
+public class Line : AttackLogic
 {
     [SerializeField] int range;
+    protected override Vector2[] Pattern(Vector2 startPos)
+    {
+        List<Vector2> possiblePos = new List<Vector2>();
+        for(int i = 0; i < range; ++i)
+        {
+            possiblePos.Add(startPos + new Vector2(0, i + 1));
+        }
+        return possiblePos.ToArray();
+    }
 
     /*public override void DisplayAttack()
     {
@@ -31,13 +40,4 @@ public class AttackLine : AttackLogic
         }
     }*/
 
-    protected override Vector2[] Pattern(Vector2 startPos)
-    {
-        List<Vector2> possiblePos = new List<Vector2>();
-        for(int i = 0; i < range; ++i)
-        {
-            possiblePos.Add(startPos + new Vector2(0, i + 1));
-        }
-        return possiblePos.ToArray();
-    }
 }

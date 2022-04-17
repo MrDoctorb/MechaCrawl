@@ -9,10 +9,15 @@ public class EnemyController : UnitController
     TurnOption option;
     AttackLogic attack;
 
-    protected override void EnterLevel()
+    protected override void Start()
+    {
+        base.Start();
+        attack = (AttackLogic)actions[0];
+    }
+
+    public override void EnterLevel()
     {
         MoveToTile(TileManager.RandomTile().transform.position);
-        attack = (AttackLogic)actions[0];
     }
 
     public override void StartTurn()

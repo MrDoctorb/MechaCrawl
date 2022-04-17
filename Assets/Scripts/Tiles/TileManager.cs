@@ -68,7 +68,7 @@ public class TileManager : MonoBehaviour
         Vector2 exitPos = entrancePos;
         while(exitPos == entrancePos)
         {
-            exitPos = (roomTiles[Random.Range(0, roomTiles.Count)]);
+            exitPos = roomTiles[Random.Range(0, roomTiles.Count)];
         }
         GameObject down = tiles[exitPos].gameObject;
         Destroy(down.GetComponent<Tile>());
@@ -76,15 +76,8 @@ public class TileManager : MonoBehaviour
         down.GetComponent<SpriteRenderer>().color = Color.red;
         tiles[exitPos] = down.GetComponent<Exit>();
 
-        /* foreach (Vector2 pos in TilePatterns.Range(Vector2.zero, 60))
-         {
-             tiles.Add(pos, Instantiate(tileref, pos, Quaternion.identity).GetComponent<Tile>());
-             if (Random.Range(0, 10) == 0)
-             {
-                 tiles[pos].type = TileType.BlockAll;
-                 tiles[pos].GetComponent<SpriteRenderer>().color = Color.black;
-             }
-         }*/
+
+
     }
 
     public static bool IsTileOpen(Vector2 pos)

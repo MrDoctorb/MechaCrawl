@@ -12,7 +12,7 @@ public class UnitController : MonoBehaviour, IComparable
     //protected AttackLogic attack; //Deprecated 
     //protected DeathLogic deathEffects;
 
-    [SerializeField] int maxHP;
+    public int maxHP;
     public float speed;
     public int hp { private set; get; }
     [System.NonSerialized] public float actionPoints;
@@ -33,16 +33,21 @@ public class UnitController : MonoBehaviour, IComparable
         References.uManager.RemoveUnit(this);
     }
 
-    void Start()
+    protected virtual void Start()
     {
         SetHealth(maxHP);
         move = GetComponent<MoveLogic>();
         actions = FindActions();
 
+        foreach(ActionLogic logic in GetComponents<ActionLogic>())
+        {
+            logic.myUnit = this;
+        }
+
 
         //attack = GetComponent<AttackLogic>(); //Deprecated
         //deathEffects = GetComponents<Effect>();
-        EnterLevel();
+        //EnterLevel();
     }
 
     ActionLogic[] FindActions()
@@ -58,7 +63,7 @@ public class UnitController : MonoBehaviour, IComparable
         return tempActions.ToArray();
     }
 
-    protected virtual void EnterLevel()
+    public virtual void EnterLevel()
     {
         //This needs to be super optimized for multiple people
         //MoveToTile(FindObjectOfType<Entrance>().transform.position);
@@ -129,11 +134,13 @@ public class UnitController : MonoBehaviour, IComparable
 
         if (hp == 0)
         {
-
+            print(name + " is deactivating...");
+            enabled = false;
             return;
         }
         else if (hp < 0)
         {
+            print(name + "is being destroyed. Current overkill health is " + hp);
             gameObject.SetActive(false);
             Destroy(gameObject);
             return;
@@ -141,8 +148,13 @@ public class UnitController : MonoBehaviour, IComparable
         onTakeDamage?.Invoke();
     }
 
-    void Heal(int amount)
+    public void Heal(int amount)
     {
+        //Heal always does at least one point
+        if(amount < 1)
+        {
+            amount = 1;
+        }
         SetHealth(hp + amount);
     }
 

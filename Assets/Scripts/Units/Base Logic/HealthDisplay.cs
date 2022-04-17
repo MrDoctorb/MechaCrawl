@@ -19,6 +19,7 @@ public class HealthDisplay : MonoBehaviour
         }
 
         unit.onHealthChange += DisplayHealth;
+        DisplayHealth();
     }
 
     void OnDisable()

@@ -17,7 +17,16 @@ public class UnitManager : MonoBehaviour
 
     void Start()
     {
+        PlaceUnits();
         CalculateNextUnits();
+    }
+
+    void PlaceUnits()
+    {
+        foreach(UnitController unit in allUnits)
+        {
+            unit.EnterLevel();
+        }
     }
 
     private void Update()
@@ -97,6 +106,9 @@ public class UnitManager : MonoBehaviour
                     }
 
                     testOutput += unit.name + "\n";
+
+
+                    //testOutput += unit is EnemyController ? " (Enemy)" + "\n" : testOutput += "\n";
                     break;
                 }
             }
@@ -115,7 +127,6 @@ public class UnitManager : MonoBehaviour
         {
             nextUnits[0].actionPoints -= References.ACTIONTHRESHOLD;
             nextUnits[0].StartTurn();
-            print(nextUnits[0].name);
         }
         else
         {

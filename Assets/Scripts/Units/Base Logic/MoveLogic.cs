@@ -8,15 +8,9 @@ public abstract class MoveLogic : ActionLogic
 {
     [SerializeField] protected int minRange, maxRange;
     [SerializeField] protected MoveType moveType;
-    UnitController myUnit;
 
     //Probably just change this to a color value at some point
     public GameObject spaceSelect;
-
-    void Start()
-    {
-        myUnit = GetComponent<UnitController>();   
-    }
 
     public override void Perform()
     {

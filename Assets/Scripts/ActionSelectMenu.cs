@@ -27,7 +27,7 @@ public class ActionSelectMenu : MonoBehaviour
             GameObject button = transform.GetChild(i).gameObject;
             SetButtonDelegates(button, actions[i].Perform);
 
-            button.GetComponentInChildren<Image>().sprite = action.icon;
+            button.transform.GetChild(0).GetComponent<Image>().sprite = action.icon;
             button.GetComponentInChildren<Text>().text = action.actionName;
         }
         SetButtonDelegates(transform.GetChild(3).gameObject, end);
