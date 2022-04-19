@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Entrance : Tile
 {
-    void Start()
-    {
-        GetComponent<SpriteRenderer>().color = Color.green;
-    }
 
     public override void EnterEffect()
     {

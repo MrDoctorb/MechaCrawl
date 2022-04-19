@@ -9,7 +9,9 @@ public class TileManager : MonoBehaviour
 {
     [SerializeField] Generator gen;
 
-    public GameObject tileref, wallref;
+
+    [SerializeField] GameObject tileref, wallref;
+    [SerializeField] Sprite stairUpSprite;
 
     static Dictionary<Vector2, Tile> tiles = new Dictionary<Vector2, Tile>();
 
@@ -62,7 +64,7 @@ public class TileManager : MonoBehaviour
         GameObject up = tiles[entrancePos].gameObject;
         Destroy(up.GetComponent<Tile>());
         up.AddComponent<Entrance>();
-        up.GetComponent<SpriteRenderer>().color = Color.green;
+        up.GetComponent<SpriteRenderer>().sprite = stairUpSprite;
         tiles[entrancePos] = up.GetComponent<Entrance>();
 
         Vector2 exitPos = entrancePos;

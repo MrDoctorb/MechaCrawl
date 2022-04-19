@@ -465,6 +465,7 @@ MonoBehaviour:
   gen: {fileID: 777119964}
   tileref: {fileID: 477498964732154283, guid: 39bfcf2f2562f804fbc03bc0623b1029, type: 3}
   wallref: {fileID: 7378640997328338620, guid: efc443a21d00c0e4c9405394ae1426f3, type: 3}
+  stairUpSprite: {fileID: 21300000, guid: 3e1e18224802cff4190c3614f7b9e1b1, type: 3}
 --- !u!4 &777119962
 Transform:
   m_ObjectHideFlags: 0
