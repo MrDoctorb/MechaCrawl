@@ -129,18 +129,15 @@ public class UnitController : MonoBehaviour, IComparable
             dmg = 0;
         }
 
-        print("AH! I'm hit for " + dmg + "-" + name);
         SetHealth(hp - dmg);
 
         if (hp == 0)
         {
-            print(name + " is deactivating...");
             enabled = false;
             return;
         }
         else if (hp < 0)
         {
-            print(name + "is being destroyed. Current overkill health is " + hp);
             gameObject.SetActive(false);
             Destroy(gameObject);
             return;
@@ -158,7 +155,7 @@ public class UnitController : MonoBehaviour, IComparable
         SetHealth(hp + amount);
     }
 
-    void SetHealth(int amount)
+    public void SetHealth(int amount)
     {
 
         hp = amount;

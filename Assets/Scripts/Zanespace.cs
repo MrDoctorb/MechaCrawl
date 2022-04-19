@@ -6,6 +6,7 @@ namespace Zanespace
     public static class References
     {
         public const int ACTIONTHRESHOLD = 10;
+        public static float timeBetweenMove = .25f;
         public static UnitManager uManager;
         public static TileManager tManager;
         public static ActionSelectMenu actionSelectMenu;

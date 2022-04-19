@@ -13,16 +13,25 @@ public class Rewire : Effect
 
             //Transfer values
             newUnit.maxHP = unit.maxHP;
-            newUnit.Heal(newUnit.maxHP /2);
             newUnit.speed = unit.speed;
             newUnit.facing = unit.facing;
 
-          //  TileManager.TileAt(newUnit.transform.position).Enter(newUnit);
-
+            TileManager.TileAt(newUnit.transform.position).Enter(newUnit);
 
             unit.GetComponentInChildren<HealthDisplay>().enabled = false;
+
             Destroy(unit);
-            newUnit.GetComponentInChildren<HealthDisplay>().enabled = true;
+
+            StartCoroutine(StupidFunction(newUnit));
         }
+    }
+
+    //Need to do this after other stuff initializes itself. 
+    //I feel like there's a better way to do this but this will have to do for now
+    IEnumerator StupidFunction(UnitController newUnit)
+    {
+        yield return new WaitForEndOfFrame();
+        newUnit.GetComponentInChildren<HealthDisplay>().enabled = true;
+        newUnit.SetHealth(newUnit.maxHP /2);
     }
 }

@@ -48,7 +48,7 @@ public abstract class MoveLogic : ActionLogic
             myUnit.MoveToTile(pos);
 
             //This also shouldn't be hard coded I don't think
-            yield return new WaitForSeconds(.25f);
+            yield return new WaitForSeconds(References.timeBetweenMove);
         }
 
         if(myUnit.move == this)
