@@ -464,6 +464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gen: {fileID: 777119964}
   tileref: {fileID: 477498964732154283, guid: 39bfcf2f2562f804fbc03bc0623b1029, type: 3}
+  wallref: {fileID: 7378640997328338620, guid: efc443a21d00c0e4c9405394ae1426f3, type: 3}
 --- !u!4 &777119962
 Transform:
   m_ObjectHideFlags: 0
@@ -513,7 +514,6 @@ MonoBehaviour:
   roomsAreSeperate: 1
   minPathLength: 5
   straightPathChance: 0.759
-  tile: {fileID: 477498964732154283, guid: 39bfcf2f2562f804fbc03bc0623b1029, type: 3}
 --- !u!114 &777119965
 MonoBehaviour:
   m_ObjectHideFlags: 0

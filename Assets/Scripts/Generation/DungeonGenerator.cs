@@ -19,7 +19,7 @@ public class DungeonGenerator : Generator
     [SerializeField] int minPathLength;
     [SerializeField] [Range(0, 1)] float straightPathChance;
 
-    [SerializeField] GameObject tile;
+    //[SerializeField] GameObject tile;
     DungeonTile[,] dungeonTiles;
     List<Connector> connectors = new List<Connector>();
     List<Vector2Int> endPoints = new List<Vector2Int>();

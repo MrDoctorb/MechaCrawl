@@ -9,7 +9,7 @@ public class TileManager : MonoBehaviour
 {
     [SerializeField] Generator gen;
 
-    public GameObject tileref;
+    public GameObject tileref, wallref;
 
     static Dictionary<Vector2, Tile> tiles = new Dictionary<Vector2, Tile>();
 
@@ -77,7 +77,22 @@ public class TileManager : MonoBehaviour
         tiles[exitPos] = down.GetComponent<Exit>();
 
 
+        SpawnWalls();
+    }
 
+    void SpawnWalls()
+    {
+        List<Vector2> allTiles = new List<Vector2>();
+        allTiles.AddRange(roomTiles);
+        allTiles.AddRange(hallwayTiles);
+        allTiles.AddRange(connectorTiles);
+        foreach (Vector2 tile in allTiles)
+        {
+            if (!tiles.ContainsKey(tile + Vector2.up))
+            {
+                Instantiate(wallref, tile + Vector2.up, Quaternion.identity);
+            }
+        }
     }
 
     public static bool IsTileOpen(Vector2 pos)
