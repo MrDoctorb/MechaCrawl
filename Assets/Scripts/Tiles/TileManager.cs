@@ -22,13 +22,23 @@ public class TileManager : MonoBehaviour
     {
         References.tManager = this;
         NewFloor();
+        References.uManager.EndTurn();
     }
     public void NewFloor()
     {
         DeleteFloor();
         SpawnFloor();
+        //DeleteEnemies();
         //Spawn New Enemies()
         References.uManager.PlaceUnits();
+    }
+
+    void DeleteEnemies()
+    {
+        foreach (EnemyController enemy in FindObjectsOfType<EnemyController>())
+        {
+            Destroy(enemy.gameObject);
+        }
     }
 
     void DeleteFloor()
@@ -44,11 +54,6 @@ public class TileManager : MonoBehaviour
             {
                 Destroy(tile.gameObject);
             }
-        }
-
-        foreach(EnemyController enemy in FindObjectsOfType<EnemyController>())
-        {
-            Destroy(enemy.gameObject);
         }
     }
 
