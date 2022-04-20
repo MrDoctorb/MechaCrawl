@@ -466,6 +466,7 @@ MonoBehaviour:
   tileref: {fileID: 477498964732154283, guid: 39bfcf2f2562f804fbc03bc0623b1029, type: 3}
   wallref: {fileID: 7378640997328338620, guid: efc443a21d00c0e4c9405394ae1426f3, type: 3}
   stairUpSprite: {fileID: 21300000, guid: 3e1e18224802cff4190c3614f7b9e1b1, type: 3}
+  stairDownSprite: {fileID: 21300000, guid: ae4374a772f441841af547ae997a50d4, type: 3}
 --- !u!4 &777119962
 Transform:
   m_ObjectHideFlags: 0
@@ -505,16 +506,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 514fb1588d073864c8d0f78a57101da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 50
-  height: 50
+  width: 30
+  height: 30
   maxRoomWidth: 6
   maxRoomHeight: 6
   minRoomWidth: 3
   minRoomHeight: 3
-  maxRoomAttempts: 20
+  maxRoomAttempts: 30
   roomsAreSeperate: 1
   minPathLength: 5
-  straightPathChance: 0.759
+  straightPathChance: 0.75
 --- !u!114 &777119965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -993,8 +994,9 @@ GameObject:
   - component: {fileID: 1480741516}
   - component: {fileID: 1480741518}
   - component: {fileID: 1480741517}
+  - component: {fileID: 1480741519}
   m_Layer: 0
-  m_Name: Cyan
+  m_Name: Tinkerer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1106,8 +1108,8 @@ SpriteRenderer:
   m_SortingLayerID: 538204823
   m_SortingLayer: 1
   m_SortingOrder: 5
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -1890574404640711995, guid: ce2dc06b069ccf248a9d6ce9f8602abc, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1160,6 +1162,25 @@ MonoBehaviour:
   - {fileID: 1480741517}
   spaceSelect: {fileID: 1378082033374136730, guid: b7f5bd3d31d59cf4f8ef8b2be4442057, type: 3}
   range: 1
+--- !u!95 &1480741519
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480741510}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a449d338eec46ec4397e046cc72aeea7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1528919829
 GameObject:
   m_ObjectHideFlags: 0

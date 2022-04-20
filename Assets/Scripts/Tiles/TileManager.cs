@@ -11,7 +11,7 @@ public class TileManager : MonoBehaviour
 
 
     [SerializeField] GameObject tileref, wallref;
-    [SerializeField] Sprite stairUpSprite;
+    [SerializeField] Sprite stairUpSprite, stairDownSprite;
 
     static Dictionary<Vector2, Tile> tiles = new Dictionary<Vector2, Tile>();
 
@@ -21,7 +21,39 @@ public class TileManager : MonoBehaviour
     void Start()
     {
         References.tManager = this;
+        NewFloor();
+    }
+    public void NewFloor()
+    {
+        DeleteFloor();
+        SpawnFloor();
+        //Spawn New Enemies()
+        References.uManager.PlaceUnits();
+    }
 
+    void DeleteFloor()
+    {
+        tiles.Clear();
+        roomTiles.Clear();
+        hallwayTiles.Clear();
+        connectorTiles.Clear();
+
+        foreach (Tile tile in FindObjectsOfType<Tile>())
+        {
+            if(tile.gameObject != gameObject)
+            {
+                Destroy(tile.gameObject);
+            }
+        }
+
+        foreach(EnemyController enemy in FindObjectsOfType<EnemyController>())
+        {
+            Destroy(enemy.gameObject);
+        }
+    }
+
+    void SpawnFloor()
+    {
         foreach (DungeonTile tile in gen.Generate())
         {
             if (tile != null)
@@ -68,14 +100,14 @@ public class TileManager : MonoBehaviour
         tiles[entrancePos] = up.GetComponent<Entrance>();
 
         Vector2 exitPos = entrancePos;
-        while(exitPos == entrancePos)
+        while (exitPos == entrancePos)
         {
             exitPos = roomTiles[Random.Range(0, roomTiles.Count)];
         }
         GameObject down = tiles[exitPos].gameObject;
         Destroy(down.GetComponent<Tile>());
         down.AddComponent<Exit>();
-        down.GetComponent<SpriteRenderer>().color = Color.red;
+        down.GetComponent<SpriteRenderer>().sprite = stairDownSprite;
         tiles[exitPos] = down.GetComponent<Exit>();
 
 

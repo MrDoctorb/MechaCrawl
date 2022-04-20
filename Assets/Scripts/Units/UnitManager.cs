@@ -17,11 +17,10 @@ public class UnitManager : MonoBehaviour
 
     void Start()
     {
-        PlaceUnits();
         CalculateNextUnits();
     }
 
-    void PlaceUnits()
+    public void PlaceUnits()
     {
         foreach(UnitController unit in allUnits)
         {
@@ -105,10 +104,14 @@ public class UnitManager : MonoBehaviour
                         occurrenceList[unit] += 1;
                     }
 
-                    testOutput += unit.name + "\n";
+                   testOutput += unit.name;
 
+                    if(unit is EnemyController)
+                    {
+                        testOutput += " (Enemy)";
+                    }
 
-                    //testOutput += unit is EnemyController ? " (Enemy)" + "\n" : testOutput += "\n";
+                    testOutput += "\n";
                     break;
                 }
             }

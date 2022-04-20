@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6445713534585324739}
   - component: {fileID: 5135270337042015523}
-  - component: {fileID: 3457506456314153517}
+  - component: {fileID: 2976468123975407836}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3457506456314153517
+--- !u!114 &2976468123975407836
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7378640997328338620}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20db62d5f557b2e439ab258244c9915e, type: 3}
+  m_Script: {fileID: 11500000, guid: cac6a1f114b24e446bbf6fc906582d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
