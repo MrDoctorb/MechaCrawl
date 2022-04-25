@@ -28,18 +28,10 @@ public class TileManager : MonoBehaviour
     {
         DeleteFloor();
         SpawnFloor();
-        //DeleteEnemies();
-        //Spawn New Enemies()
-        References.uManager.PlaceUnits();
+        References.uManager.NewFloorUnitSetup();
     }
 
-    void DeleteEnemies()
-    {
-        foreach (EnemyController enemy in FindObjectsOfType<EnemyController>())
-        {
-            Destroy(enemy.gameObject);
-        }
-    }
+    
 
     void DeleteFloor()
     {

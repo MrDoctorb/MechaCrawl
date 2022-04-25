@@ -124,3 +124,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logic: {fileID: 0}
   tilesInSet: []
+  color: {r: 1, g: 0.21176472, b: 0.21176472, a: 0.5019608}

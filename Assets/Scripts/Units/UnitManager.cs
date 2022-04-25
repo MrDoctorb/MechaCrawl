@@ -9,6 +9,7 @@ public class UnitManager : MonoBehaviour
     List<UnitController> allUnits = new List<UnitController>();
     List<UnitController> nextUnits;
     [SerializeField] Text tempTurnOrderDisplay;
+    [SerializeField] List<GameObject> possibleEnemies = new List<GameObject>();
 
     private void Awake()
     {
@@ -18,6 +19,26 @@ public class UnitManager : MonoBehaviour
     void Start()
     {
         CalculateNextUnits();
+    }
+
+    public void NewFloorUnitSetup()
+    {
+        DeleteEnemies();
+        SpawnEnemies();
+        PlaceUnits();
+    }
+
+    void SpawnEnemies()
+    {
+        Instantiate(possibleEnemies[Random.Range(0,possibleEnemies.Count)], Vector2.zero, Quaternion.identity);
+    }
+
+    void DeleteEnemies()
+    {
+        foreach (EnemyController enemy in FindObjectsOfType<EnemyController>())
+        {
+            Destroy(enemy.gameObject);
+        }
     }
 
     public void PlaceUnits()

@@ -6,6 +6,16 @@ public class MultiTileSelect : MonoBehaviour
 {
     public ActionLogic logic;
     public MultiTileSelect[] tilesInSet;
+    public Color color;
+    public SpriteRenderer rend { private set; get; }
+
+    private void Start()
+    {
+        rend = GetComponent<SpriteRenderer>();
+        color.a = .5f;
+        rend.color = color;
+    }
+
 
     void OnMouseDown()
     {
@@ -20,6 +30,22 @@ public class MultiTileSelect : MonoBehaviour
         foreach (MultiTileSelect tileSelect in FindObjectsOfType<MultiTileSelect>())
         {
             Destroy(tileSelect.gameObject);
+        }
+    }
+
+    private void OnMouseEnter()
+    {
+        foreach(MultiTileSelect tile in tilesInSet)
+        {
+            tile.rend.color = color + new Color(.25f, .25f, .25f, 0);
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        foreach (MultiTileSelect tile in tilesInSet)
+        {
+            tile.rend.color = color;
         }
     }
 

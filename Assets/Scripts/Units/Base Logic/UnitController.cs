@@ -25,6 +25,11 @@ public class UnitController : MonoBehaviour, IComparable
 
     private void OnEnable()
     {
+        if (gameObject.name.Contains("(Clone)"))
+        {
+            gameObject.name = gameObject.name.Replace("(Clone)", "");
+        }
+
         References.uManager.AddUnit(this);
     }
 
@@ -39,7 +44,7 @@ public class UnitController : MonoBehaviour, IComparable
         move = GetComponent<MoveLogic>();
         actions = FindActions();
 
-        foreach(ActionLogic logic in GetComponents<ActionLogic>())
+        foreach (ActionLogic logic in GetComponents<ActionLogic>())
         {
             logic.myUnit = this;
         }
@@ -148,7 +153,7 @@ public class UnitController : MonoBehaviour, IComparable
     public void Heal(int amount)
     {
         //Heal always does at least one point
-        if(amount < 1)
+        if (amount < 1)
         {
             amount = 1;
         }
