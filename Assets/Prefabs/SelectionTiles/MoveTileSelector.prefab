@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logic: {fileID: 0}
+  color: {r: 0, g: 0.8627451, b: 1, a: 0.5019608}
 --- !u!61 &-2487979413435687128
 BoxCollider2D:
   m_ObjectHideFlags: 0
