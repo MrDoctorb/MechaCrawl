@@ -51,11 +51,15 @@ namespace Zanespace
             return newRotation;
         }
 
+        /* Is this even where this should be? Or should this be on its own script for fog of war (fow)
         public static bool IsOpenLine(Vector2 origin, Vector2 destination)
         {
-            throw new System.Exception();
+            foreach(Vector2 tile in TilePatterns.Line(origin, destination))
+            {
+                if(TileManager.TileAt(tile).CanSeeThrough))
+            }
             return true;
-        }
+        }*/
 
     }
 
@@ -66,7 +70,6 @@ namespace Zanespace
         /// Draws a line from origin to destination inclusively along the grid and returns all squares in the line
         /// </summary>
         /// <returns>All squares with the line starting with origin</returns>
-        //Still needs ALOT of work
         public static Vector2[] Line(Vector2 origin, Vector2 destination)
         {
             List<Vector2> squares = new List<Vector2>();

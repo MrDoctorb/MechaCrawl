@@ -9,11 +9,19 @@ public abstract class Tile : MonoBehaviour
 
     public UnitController unit;
 
+    private SpriteRenderer rend;
+
     public abstract void EnterEffect();
 
     public abstract void StopEffect();
 
     public abstract void ExitEffect();
+
+    private void Start()
+    {
+        rend = GetComponent<SpriteRenderer>();
+        SetVisibility(0);
+    }
 
     public void Enter(UnitController newUnit)
     {
@@ -60,7 +68,7 @@ public abstract class Tile : MonoBehaviour
 
     public bool CanPassThrough(MoveType moveType)
     {
-        if(type == TileType.BlockAll && moveType != MoveType.Teleport)
+        if (type == TileType.BlockAll && moveType != MoveType.Teleport)
         {
             return false;
         }
@@ -77,12 +85,31 @@ public abstract class Tile : MonoBehaviour
         }
     }
 
+    public bool CanSeeThrough()
+    {
+        if (type == TileType.BlockAll)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     void OnDestroy()
     {
-        if(unit != null)
+        if (unit != null)
         {
             unit.onEndTurn -= StopEffect;
             unit.onMove -= Exit;
         }
+    }
+
+    /// <summary>
+    /// Set the visibility of the given tile
+    /// </summary>
+    /// <param name="percentage">1 is fully visible, 0 is invisible</param>
+    void SetVisibility(float percentage)
+    {
+        rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, percentage);   
     }
 }
