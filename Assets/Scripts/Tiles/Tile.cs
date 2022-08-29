@@ -70,7 +70,7 @@ public abstract class Tile : MonoBehaviour
             case MoveType.Fly:
                 return type != TileType.BlockFly;
             case MoveType.Walk:
-                return type != TileType.BlockWalk && IsOpen();
+                return type != TileType.BlockWalk; //&& IsOpen();
             default://Teleport and Jump can pass through any space (Except jump can't go through walls
                 return true;
 

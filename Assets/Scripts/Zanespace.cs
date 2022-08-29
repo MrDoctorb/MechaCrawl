@@ -50,10 +50,54 @@ namespace Zanespace
                                               rotatee.x * Mathf.Sin(angle) + rotatee.y * Mathf.Cos(angle)) + pivot;
             return newRotation;
         }
+
+        public static bool IsOpenLine(Vector2 origin, Vector2 destination)
+        {
+            throw new System.Exception();
+            return true;
+        }
+
     }
 
     public static class TilePatterns
     {
+
+        /// <summary>
+        /// Draws a line from origin to destination inclusively along the grid and returns all squares in the line
+        /// </summary>
+        /// <returns>All squares with the line starting with origin</returns>
+        //Still needs ALOT of work
+        public static Vector2[] Line(Vector2 origin, Vector2 destination)
+        {
+            List<Vector2> squares = new List<Vector2>();
+            squares.Add(origin);
+
+            float dy =(destination.y - origin.y);
+            float dx = (destination.x - origin.x);
+            int length = Mathf.Abs(dx) > Mathf.Abs(dy) ? (int)dx : (int)dy;
+            float slope = dy/dx;
+            Vector2 nextPoint = new Vector2(origin.x, origin.y);
+
+            if(Mathf.Abs(slope) >= 1)
+            {
+                for (int i = 0; i <= length; i++)
+                {
+                    float temp = origin.x + ((1/slope) * i);
+                    int newx = Mathf.RoundToInt(temp);
+                    
+                    Debug.Log("value of " + temp + "rounded to " +  newx);
+
+                    int newy = (int)origin.y + i;
+
+                    squares.Add(new Vector2(newx, newy));
+                }
+            }
+
+
+
+            return squares.ToArray();
+        }
+
         public static Vector2[] Range(Vector2 origin, int outerRadius, int innerRadius = 0)
         {
             List<Vector2> squares = new List<Vector2>();
