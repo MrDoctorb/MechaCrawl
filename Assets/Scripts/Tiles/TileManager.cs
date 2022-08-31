@@ -18,9 +18,13 @@ public class TileManager : MonoBehaviour
     static List<Vector2> roomTiles = new List<Vector2>();
     static List<Vector2> hallwayTiles = new List<Vector2>();
     static List<Vector2> connectorTiles = new List<Vector2>();
+
+    public static Tile defaultTile;
+
     void Start()
     {
         References.tManager = this;
+        defaultTile = References.tManager.GetComponent<Wall>();
         NewFloor();
         References.uManager.EndTurn();
     }
@@ -135,7 +139,7 @@ public class TileManager : MonoBehaviour
     {
         if (!tiles.ContainsKey(pos))
         {
-            return References.tManager.GetComponent<Wall>();
+            return defaultTile;
         }
         return tiles[pos];
     }

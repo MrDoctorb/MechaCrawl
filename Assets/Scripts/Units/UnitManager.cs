@@ -49,7 +49,6 @@ public class UnitManager : MonoBehaviour
         }
     }
 
-
     public int AmountOfUnits()
     {
         return allUnits.Count;
@@ -166,6 +165,4 @@ public class UnitManager : MonoBehaviour
         CalculateNextUnits();
         NextTurn();
     }
-
-
 }

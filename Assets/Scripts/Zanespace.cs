@@ -51,16 +51,6 @@ namespace Zanespace
             return newRotation;
         }
 
-        /* Is this even where this should be? Or should this be on its own script for fog of war (fow)
-        public static bool IsOpenLine(Vector2 origin, Vector2 destination)
-        {
-            foreach(Vector2 tile in TilePatterns.Line(origin, destination))
-            {
-                if(TileManager.TileAt(tile).CanSeeThrough))
-            }
-            return true;
-        }*/
-
     }
 
     public static class TilePatterns
@@ -78,25 +68,35 @@ namespace Zanespace
             float dy =(destination.y - origin.y);
             float dx = (destination.x - origin.x);
             int length = Mathf.Abs(dx) > Mathf.Abs(dy) ? (int)dx : (int)dy;
-            float slope = dy/dx;
+            float slope = Mathf.Abs(dy/dx);
+            int xdir = (int)Mathf.Sign(dx);
+            int ydir = (int)Mathf.Sign(dy);
             Vector2 nextPoint = new Vector2(origin.x, origin.y);
 
-            if(Mathf.Abs(slope) >= 1)
+            if(slope >= 1)
             {
                 for (int i = 0; i <= length; i++)
                 {
-                    float temp = origin.x + ((1/slope) * i);
+                    float temp = origin.x + ((1/slope) * (i* xdir)) ;
                     int newx = Mathf.RoundToInt(temp);
-                    
-                    Debug.Log("value of " + temp + "rounded to " +  newx);
 
-                    int newy = (int)origin.y + i;
+                    int newy = (int)origin.y + (i * ydir);
 
                     squares.Add(new Vector2(newx, newy));
                 }
             }
+            else
+            {
+                for(int i = 0; i<=length; i++)
+                {
+                    float temp = origin.y + (slope * (i* ydir));
+                    int newy = Mathf.RoundToInt(temp);
 
+                    int newx = (int)origin.x + (i * xdir);
 
+                    squares.Add(new Vector2(newx, newy));
+                }
+            }
 
             return squares.ToArray();
         }

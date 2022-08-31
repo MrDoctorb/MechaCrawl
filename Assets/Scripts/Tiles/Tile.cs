@@ -108,7 +108,7 @@ public abstract class Tile : MonoBehaviour
     /// Set the visibility of the given tile
     /// </summary>
     /// <param name="percentage">1 is fully visible, 0 is invisible</param>
-    void SetVisibility(float percentage)
+    public void SetVisibility(float percentage)
     {
         rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, percentage);   
     }
