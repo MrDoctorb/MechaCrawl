@@ -22,16 +22,25 @@ public class Rewire : Effect
 
             Destroy(unit);
 
+            //You can stay, for now
             StartCoroutine(StupidFunction(newUnit));
+
         }
     }
 
     //Need to do this after other stuff initializes itself. 
     //I feel like there's a better way to do this but this will have to do for now
+
+    //Can't I just make a reset function that has the functionality of the turn off turn on? That seems easier, will get to it soonish
+    //Well, It seems that the lighting only works on a following frame
     IEnumerator StupidFunction(UnitController newUnit)
     {
         yield return new WaitForEndOfFrame();
         newUnit.GetComponentInChildren<HealthDisplay>().enabled = true;
         newUnit.SetHealth(newUnit.maxHP /2);
+
+
+        //VERY TEMPORARY, GET RID OF THIS LATER
+        newUnit.transform.gameObject.AddComponent<LightSource>().brightness = 3;
     }
 }

@@ -8,16 +8,34 @@ public class LightSource : MonoBehaviour
     //Distance of the light
     public int brightness;
 
+    public bool button;
+    public void Update()
+    {
+        if(button)
+        {
+            GetComponent<UnitController>().onEndMove += UpdateLighting;
+            button = false;
+        }
+        
+    }
+
 
     //TEMPORARY START FUNCTION
-    private void Start()
+    private void OnEnable()
     {
         GetComponent<UnitController>().onEndMove += UpdateLighting;
+        print("New Light Started for " + GetComponent<UnitController>().name);
+    }
+
+    private void OnDisable()
+    {
+        GetComponent<UnitController>().onEndMove -= UpdateLighting;
     }
 
     void UpdateLighting()
     {
-        foreach(Tile tile in TilesInSight())
+        print("Updating");
+        foreach (Tile tile in TilesInSight())
         {
             tile.SetVisibility(Mathf.Abs((brightness + 2 - Functions.GridDistance(transform.position, tile.transform.position))/(float)brightness));
         }
@@ -31,18 +49,18 @@ public class LightSource : MonoBehaviour
     {
         List<Tile> tiles = new List<Tile>();
 
-        for(int i = brightness; i > 0; i--)
+        for (int i = brightness; i > 0; i--)
         {
             foreach (Vector2 pos in TilePatterns.Range(transform.position, i, i))
             {
                 Tile nextTile = TileManager.TileAt(pos);
-                
+
                 if (nextTile != TileManager.defaultTile && !tiles.Contains(nextTile))
                 {
                     foreach (Vector2 sightPos in TilePatterns.Line(transform.position, nextTile.transform.position))
                     {
-                        Tile sightTile = TileManager.TileAt(sightPos);                        
-                        
+                        Tile sightTile = TileManager.TileAt(sightPos);
+
                         if (sightTile == TileManager.defaultTile)
                         {
                             break;
@@ -51,12 +69,12 @@ public class LightSource : MonoBehaviour
                         {
                             continue;
                         }
-                       tiles.Add(sightTile);
+                        tiles.Add(sightTile);
                     }
                 }
             }
         }
-        
+
         return tiles.ToArray();
 
     }

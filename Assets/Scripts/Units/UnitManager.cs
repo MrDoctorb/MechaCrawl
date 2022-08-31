@@ -63,7 +63,6 @@ public class UnitManager : MonoBehaviour
         else
         {
             allUnits.Add(unit);
-            print(unit.name + " added");
         }
     }
 
