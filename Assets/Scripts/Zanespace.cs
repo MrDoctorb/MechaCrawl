@@ -67,11 +67,10 @@ namespace Zanespace
 
             float dy =(destination.y - origin.y);
             float dx = (destination.x - origin.x);
-            int length = Mathf.Abs(dx) > Mathf.Abs(dy) ? (int)dx : (int)dy;
+            int length = Mathf.Abs(dx) > Mathf.Abs(dy) ? (int)Mathf.Abs(dx) : (int)Mathf.Abs(dy);
             float slope = Mathf.Abs(dy/dx);
-            int xdir = (int)Mathf.Sign(dx);
-            int ydir = (int)Mathf.Sign(dy);
-            Vector2 nextPoint = new Vector2(origin.x, origin.y);
+            float xdir = Mathf.Sign(dx);
+            float ydir = Mathf.Sign(dy);
 
             if(slope >= 1)
             {
@@ -80,7 +79,7 @@ namespace Zanespace
                     float temp = origin.x + ((1/slope) * (i* xdir)) ;
                     int newx = Mathf.RoundToInt(temp);
 
-                    int newy = (int)origin.y + (i * ydir);
+                    int newy = (int)(origin.y + (i * ydir));
 
                     squares.Add(new Vector2(newx, newy));
                 }
@@ -92,7 +91,7 @@ namespace Zanespace
                     float temp = origin.y + (slope * (i* ydir));
                     int newy = Mathf.RoundToInt(temp);
 
-                    int newx = (int)origin.x + (i * xdir);
+                    int newx = (int)(origin.x + (i * xdir));
 
                     squares.Add(new Vector2(newx, newy));
                 }

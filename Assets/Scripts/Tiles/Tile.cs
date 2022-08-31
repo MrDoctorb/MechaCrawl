@@ -27,7 +27,7 @@ public abstract class Tile : MonoBehaviour
     {
         unit = newUnit;
         unit.transform.position = transform.position;
-        unit.onMove += Exit;
+        unit.onStartMove += Exit;
         unit.onEndTurn += StopEffect;
 
         EnterEffect();
@@ -39,7 +39,7 @@ public abstract class Tile : MonoBehaviour
 
 
         unit.onEndTurn -= StopEffect;
-        unit.onMove -= Exit;
+        unit.onStartMove -= Exit;
         unit = null;
     }
 
@@ -100,7 +100,7 @@ public abstract class Tile : MonoBehaviour
         if (unit != null)
         {
             unit.onEndTurn -= StopEffect;
-            unit.onMove -= Exit;
+            unit.onStartMove -= Exit;
         }
     }
 

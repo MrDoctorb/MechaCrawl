@@ -12,16 +12,14 @@ public class LightSource : MonoBehaviour
     //TEMPORARY START FUNCTION
     private void Start()
     {
-        GetComponent<UnitController>().onMove += UpdateLighting;
+        GetComponent<UnitController>().onEndMove += UpdateLighting;
     }
 
     void UpdateLighting()
     {
         foreach(Tile tile in TilesInSight())
         {
-            //tile.SetVisibility(Mathf.Abs((brightness + 1 - Functions.GridDistance(transform.position, tile.transform.position))/(float)brightness));
-
-            //tile.GetComponent<SpriteRenderer>().color = Color.red;
+            tile.SetVisibility(Mathf.Abs((brightness + 2 - Functions.GridDistance(transform.position, tile.transform.position))/(float)brightness));
         }
     }
 
@@ -41,14 +39,9 @@ public class LightSource : MonoBehaviour
                 
                 if (nextTile != TileManager.defaultTile && !tiles.Contains(nextTile))
                 {
-                    //nextTile.GetComponent<SpriteRenderer>().color = Color.red;
                     foreach (Vector2 sightPos in TilePatterns.Line(transform.position, nextTile.transform.position))
                     {
-                        Tile sightTile = TileManager.TileAt(sightPos);
-                        
-                 
-                        sightTile.GetComponent<SpriteRenderer>().color = Color.red;
-                        
+                        Tile sightTile = TileManager.TileAt(sightPos);                        
                         
                         if (sightTile == TileManager.defaultTile)
                         {
@@ -58,10 +51,7 @@ public class LightSource : MonoBehaviour
                         {
                             continue;
                         }
-                        else
-                        {
-                        }    
-                       // tiles.Add(sightTile);
+                       tiles.Add(sightTile);
                     }
                 }
             }

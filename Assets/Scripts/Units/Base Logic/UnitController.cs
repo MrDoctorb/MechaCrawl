@@ -18,7 +18,10 @@ public class UnitController : MonoBehaviour, IComparable
     [System.NonSerialized] public float actionPoints;
     public Direction facing;
 
-    public event Alert onMove;
+
+    //onMove Alerts called for movement between every tile
+    public event Alert onStartMove;
+    public event Alert onEndMove;
     public event Alert onEndTurn;
     public event Alert onTakeDamage;
     public event Alert onHealthChange;
@@ -115,8 +118,9 @@ public class UnitController : MonoBehaviour, IComparable
         if (TileManager.IsTileOpen(pos))
         {
             //Only invoke onMove if something is subscribed to it
-            onMove?.Invoke();
+            onStartMove?.Invoke();
             TileManager.TileAt(pos).Enter(this);
+            onEndMove?.Invoke();
         }
     }
 

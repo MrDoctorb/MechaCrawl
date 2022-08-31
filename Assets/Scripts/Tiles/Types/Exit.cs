@@ -5,9 +5,6 @@ using Zanespace;
 
 public class Exit : Tile
 {
-    void Start()
-    {
-    }
 
     public override void EnterEffect()
     {

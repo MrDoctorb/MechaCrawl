@@ -7,7 +7,7 @@ public class DynamicLine : AttackLogic
 {
     protected override Vector2[] Pattern(Vector2 startPos)
     {
-        return TilePatterns.Line(startPos, startPos + new Vector2(3, 3));
+        return TilePatterns.Line(startPos, startPos + new Vector2(-3, -3));
     }
 
 }
