@@ -9,15 +9,15 @@ public abstract class Tile : MonoBehaviour
 
     public UnitController unit;
 
-    private SpriteRenderer rend;
+    protected SpriteRenderer rend;
 
     public abstract void EnterEffect();
 
     public abstract void StopEffect();
 
     public abstract void ExitEffect();
-
-    private void Start()
+    
+    void Start()
     {
         rend = GetComponent<SpriteRenderer>();
         SetVisibility(0);

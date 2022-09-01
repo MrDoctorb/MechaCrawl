@@ -4,8 +4,10 @@ using UnityEngine;
 using Zanespace;
 public class Wall : Tile
 {
-    private void Start()
+    void Start()
     {
+        rend = GetComponent<SpriteRenderer>();
+        SetVisibility(0);
         type = TileType.BlockAll;
     }
 

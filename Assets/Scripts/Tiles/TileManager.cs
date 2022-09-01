@@ -18,6 +18,7 @@ public class TileManager : MonoBehaviour
     static List<Vector2> roomTiles = new List<Vector2>();
     static List<Vector2> hallwayTiles = new List<Vector2>();
     static List<Vector2> connectorTiles = new List<Vector2>();
+    static List<Vector2> wallTiles = new List<Vector2>();
 
     public static Tile defaultTile;
 
@@ -121,13 +122,16 @@ public class TileManager : MonoBehaviour
         allTiles.AddRange(roomTiles);
         allTiles.AddRange(hallwayTiles);
         allTiles.AddRange(connectorTiles);
+        wallTiles = new List<Vector2>();
         foreach (Vector2 tile in allTiles)
         {
             if (!tiles.ContainsKey(tile + Vector2.up))
             {
-                Instantiate(wallref, tile + Vector2.up, Quaternion.identity);
+               wallTiles.Add(tile + Vector2.up);
+               Instantiate(wallref, tile + Vector2.up, Quaternion.identity);
             }
         }
+        allTiles.AddRange(wallTiles);
     }
 
     public static bool IsTileOpen(Vector2 pos)

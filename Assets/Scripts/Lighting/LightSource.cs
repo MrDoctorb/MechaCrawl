@@ -3,28 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zanespace;
 
+
 public class LightSource : MonoBehaviour
 {
     //Distance of the light
     public int brightness;
 
-    public bool button;
-    public void Update()
-    {
-        if(button)
-        {
-            GetComponent<UnitController>().onEndMove += UpdateLighting;
-            button = false;
-        }
-        
-    }
-
-
     //TEMPORARY START FUNCTION
     private void OnEnable()
     {
         GetComponent<UnitController>().onEndMove += UpdateLighting;
-        print("New Light Started for " + GetComponent<UnitController>().name);
     }
 
     private void OnDisable()
@@ -34,7 +22,6 @@ public class LightSource : MonoBehaviour
 
     void UpdateLighting()
     {
-        print("Updating");
         foreach (Tile tile in TilesInSight())
         {
             tile.SetVisibility(Mathf.Abs((brightness + 2 - Functions.GridDistance(transform.position, tile.transform.position))/(float)brightness));
@@ -61,8 +48,10 @@ public class LightSource : MonoBehaviour
                     {
                         Tile sightTile = TileManager.TileAt(sightPos);
 
-                        if (sightTile == TileManager.defaultTile)
+                        if (sightTile == TileManager.defaultTile || sightTile is Wall)
                         {
+                            print(sightTile.name + " " + sightPos);
+                            tiles.Add(sightTile);
                             break;
                         }
                         if (tiles.Contains(sightTile))
