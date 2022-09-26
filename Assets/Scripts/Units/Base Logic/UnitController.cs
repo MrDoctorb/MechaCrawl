@@ -22,6 +22,7 @@ public class UnitController : MonoBehaviour, IComparable
     //onMove Alerts called for movement between every tile
     public event Alert onStartMove;
     public event Alert onEndMove;
+    public event Alert onStartTurn;
     public event Alert onEndTurn;
     public event Alert onTakeDamage;
     public event Alert onHealthChange;
@@ -80,6 +81,7 @@ public class UnitController : MonoBehaviour, IComparable
 
     public virtual void StartTurn()
     {
+        onStartTurn?.Invoke();
         move.Perform();
     }
 

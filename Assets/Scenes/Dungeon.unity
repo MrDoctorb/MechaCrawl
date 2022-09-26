@@ -419,10 +419,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 30
   height: 30
-  maxRoomWidth: 16
-  maxRoomHeight: 16
-  minRoomWidth: 13
-  minRoomHeight: 13
+  maxRoomWidth: 6
+  maxRoomHeight: 6
+  minRoomWidth: 3
+  minRoomHeight: 3
   maxRoomAttempts: 30
   roomsAreSeperate: 1
   minPathLength: 5

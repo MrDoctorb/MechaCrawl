@@ -8,16 +8,20 @@ public class LightSource : MonoBehaviour
 {
     //Distance of the light
     public int brightness;
+    UnitController unit;
 
-    //TEMPORARY START FUNCTION
     private void OnEnable()
     {
-        GetComponent<UnitController>().onEndMove += UpdateLighting;
+        unit = GetComponent<UnitController>();
+        unit.onEndMove += UpdateLighting;
+        unit.onStartTurn += UpdateLighting;
     }
 
     private void OnDisable()
     {
-        GetComponent<UnitController>().onEndMove -= UpdateLighting;
+        unit.onEndMove -= UpdateLighting;
+        unit.onStartTurn += UpdateLighting;
+
     }
 
     void UpdateLighting()
@@ -48,16 +52,27 @@ public class LightSource : MonoBehaviour
                     {
                         Tile sightTile = TileManager.TileAt(sightPos);
 
+                        //If this tile is a wall, add it and stop looking
                         if (sightTile == TileManager.defaultTile || sightTile is Wall)
                         {
-                            print(sightTile.name + " " + sightPos);
                             tiles.Add(sightTile);
                             break;
                         }
+                        //If the tiles we have seen so far already have this tile, skip it
                         if (tiles.Contains(sightTile))
                         {
                             continue;
                         }
+                        //Ensure this isn't a diagonal
+                        Tile xSide = TileManager.TileAt(sightPos + new Vector2(transform.position.x - sightPos.x, 0).normalized);
+                        Tile ySide = TileManager.TileAt(sightPos + new Vector2(0, transform.position.y - sightPos.y).normalized);   
+                        if ((xSide == TileManager.defaultTile || xSide is Wall) &&(ySide == TileManager.defaultTile || ySide is Wall))
+                        {
+                            tiles.Add(xSide);
+                            tiles.Add(ySide);
+                            break;
+                        }
+                        //Add the valid tile to tiles we can see
                         tiles.Add(sightTile);
                     }
                 }
