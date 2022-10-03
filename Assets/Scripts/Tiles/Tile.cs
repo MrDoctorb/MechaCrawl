@@ -9,6 +9,8 @@ public abstract class Tile : MonoBehaviour
 
     public UnitController unit;
 
+    public Alert onLightChange;
+    [System.NonSerialized] public List<LightSource> lightSources;
     protected SpriteRenderer rend;
 
     public abstract void EnterEffect();
@@ -16,7 +18,12 @@ public abstract class Tile : MonoBehaviour
     public abstract void StopEffect();
 
     public abstract void ExitEffect();
-    
+
+    void OnEnable()
+    {
+        lightSources = new List<LightSource>();
+    }
+
     void Start()
     {
         rend = GetComponent<SpriteRenderer>();
@@ -104,11 +111,30 @@ public abstract class Tile : MonoBehaviour
         }
     }
 
+    public void UpdateLighting()
+    {
+        //Default value is Explored
+        float brightest = .2f;
+        foreach(LightSource source in lightSources)
+        {
+            float newLight = ((source.brightness -Functions.GridDistance(source.transform.position, transform.position))/(float)source.brightness) + .2f;
+            if(newLight > brightest)
+            {
+                brightest = newLight;
+            }
+        }
+        if(brightest != rend.color.a)
+        {
+            SetVisibility(brightest);
+            onLightChange?.Invoke();
+        }
+    }
+
     /// <summary>
     /// Set the visibility of the given tile
     /// </summary>
     /// <param name="percentage">1 is fully visible, 0 is invisible</param>
-    public void SetVisibility(float percentage)
+    protected void SetVisibility(float percentage)
     {
         rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, percentage);   
     }

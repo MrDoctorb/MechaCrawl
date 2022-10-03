@@ -9,12 +9,14 @@ public class LightSource : MonoBehaviour
     //Distance of the light
     public int brightness;
     UnitController unit;
+    List<Tile> litTiles;
 
     private void OnEnable()
     {
         unit = GetComponent<UnitController>();
         unit.onEndMove += UpdateLighting;
         unit.onStartTurn += UpdateLighting;
+        litTiles = new List<Tile>();
     }
 
     private void OnDisable()
@@ -26,15 +28,64 @@ public class LightSource : MonoBehaviour
 
     void UpdateLighting()
     {
+
+        List<Tile> newTiles = new List<Tile>(TilesInSight());
+        List<Tile> oldTiles = new List<Tile>(litTiles);
+
+        //Only Unsubscribe for tiles that are leaving the zone
+        foreach(Tile tile in oldTiles)
+        {
+            //Tiles that aren't in both of the sets
+            if(!newTiles.Contains(tile))
+            {
+                //Unsubscribe Tile
+                tile.onLightChange -= UpdateLighting;
+                tile.lightSources.Remove(this);
+                //Set tile to be "explored" darkness
+                tile.UpdateLighting();
+                //Remove tile from litTiles
+                litTiles.Remove(tile);
+            }
+        }
+
+        //Only add tiles that aren't already in litTiles
+        foreach(Tile tile in newTiles)
+        {
+            if(!litTiles.Contains(tile))
+            {
+                //Subscribe Tile
+                tile.onLightChange += UpdateLighting;
+                tile.lightSources.Add(this);
+                //Add tile to lit Tiles
+                litTiles.Add(tile);
+            }
+        }
+
+        foreach (Tile tile in litTiles)
+        {
+            //Set the light level 
+            tile.UpdateLighting();
+        }
+
+    }
+
+   /* void UpdateLighting()
+    {
+
         foreach (Tile tile in TilesInSight())
         {
-            tile.SetVisibility(Mathf.Abs((brightness + 2 - Functions.GridDistance(transform.position, tile.transform.position))/(float)brightness));
+            //tile.SetVisibility(Mathf.Abs((brightness + 2 - Functions.GridDistance(transform.position, tile.transform.position))/(float)brightness));
+           // tile.
         }
+    }*/
+
+    public float Brightness(int distance)
+    {
+        return Mathf.Abs((brightness + 2 - distance)/(float)brightness);
     }
 
     /// <summary>
     /// Returns an array of each tile the given lightsource can illuminate
-    /// Currently requires optimization
     /// </summary>
     public Tile[] TilesInSight()
     {
