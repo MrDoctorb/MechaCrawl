@@ -111,23 +111,42 @@ public abstract class Tile : MonoBehaviour
         }
     }
 
+    public bool IsLit()
+    {
+        return lightSources.Count > 0;
+    }
+
     public void UpdateLighting()
     {
         //Default value is Explored
         float brightest = .2f;
-        foreach(LightSource source in lightSources)
+        foreach (LightSource source in lightSources)
         {
-            float newLight = ((source.brightness -Functions.GridDistance(source.transform.position, transform.position))/(float)source.brightness) + .2f;
-            if(newLight > brightest)
+            float newLight = (Mathf.Abs(source.brightness -Functions.GridDistance(source.transform.position, transform.position))
+                /(float)source.brightness) + .2f;
+            if (newLight > brightest)
             {
                 brightest = newLight;
             }
         }
-        if(brightest != rend.color.a)
+        if (brightest != rend.color.a)
         {
             SetVisibility(brightest);
             onLightChange?.Invoke();
         }
+        if (unit is EnemyController)
+        {
+            if (brightest > .2f)
+            {
+                unit.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            else
+            {
+                unit.GetComponent<SpriteRenderer>().enabled = false;
+            }
+
+        }
+
     }
 
     /// <summary>
@@ -136,6 +155,6 @@ public abstract class Tile : MonoBehaviour
     /// <param name="percentage">1 is fully visible, 0 is invisible</param>
     protected void SetVisibility(float percentage)
     {
-        rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, percentage);   
+        rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, percentage);
     }
 }

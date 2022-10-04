@@ -27,8 +27,11 @@ public class UnitController : MonoBehaviour, IComparable
     public event Alert onTakeDamage;
     public event Alert onHealthChange;
 
+    protected SpriteRenderer rend;
+
     private void OnEnable()
     {
+        rend = GetComponent<SpriteRenderer>();
         if (gameObject.name.Contains("(Clone)"))
         {
             gameObject.name = gameObject.name.Replace("(Clone)", "");
@@ -115,7 +118,7 @@ public class UnitController : MonoBehaviour, IComparable
         }
     }
 
-    public void MoveToTile(Vector2 pos)
+    public virtual void MoveToTile(Vector2 pos)
     {
         if (TileManager.IsTileOpen(pos))
         {
@@ -132,7 +135,7 @@ public class UnitController : MonoBehaviour, IComparable
     /// and after checking if the unit has died.
     /// A dead unit does not trigger damage effects.
     /// </summary>
-    /// <param name="dmg"></param>
+    /// <param name="dmg">The amount of damage to be dealt</param>
     public void TakeDamage(int dmg)
     {
         if (dmg < 0)

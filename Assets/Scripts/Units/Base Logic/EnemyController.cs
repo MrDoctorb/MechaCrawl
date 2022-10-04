@@ -18,6 +18,7 @@ public class EnemyController : UnitController
     public override void EnterLevel()
     {
         MoveToTile(TileManager.RandomTile().transform.position);
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public override void StartTurn()
@@ -62,7 +63,6 @@ public class EnemyController : UnitController
         //only has attack to select
         attack.SelectTargets(option.attackGroup);
     }
-
 }
 class TurnOption
 {
