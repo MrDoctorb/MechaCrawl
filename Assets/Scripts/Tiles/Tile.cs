@@ -12,6 +12,7 @@ public abstract class Tile : MonoBehaviour
     public Alert onLightChange;
     [System.NonSerialized] public List<LightSource> lightSources;
     protected SpriteRenderer rend;
+    private float lightLevel = 0;
 
     public abstract void EnterEffect();
 
@@ -22,11 +23,11 @@ public abstract class Tile : MonoBehaviour
     void OnEnable()
     {
         lightSources = new List<LightSource>();
+        rend = GetComponent<SpriteRenderer>();
     }
 
     void Start()
     {
-        rend = GetComponent<SpriteRenderer>();
         SetVisibility(0);
     }
 
@@ -129,7 +130,7 @@ public abstract class Tile : MonoBehaviour
                 brightest = newLight;
             }
         }
-        if (brightest != rend.color.a)
+        if (brightest != lightLevel)
         {
             SetVisibility(brightest);
             onLightChange?.Invoke();
@@ -138,11 +139,11 @@ public abstract class Tile : MonoBehaviour
         {
             if (brightest > .2f)
             {
-                unit.GetComponent<SpriteRenderer>().enabled = true;
+                unit.SetVisibility(true);
             }
             else
             {
-                unit.GetComponent<SpriteRenderer>().enabled = false;
+                unit.SetVisibility(false);
             }
 
         }
@@ -156,5 +157,6 @@ public abstract class Tile : MonoBehaviour
     protected void SetVisibility(float percentage)
     {
         rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, percentage);
+        lightLevel = percentage;
     }
 }

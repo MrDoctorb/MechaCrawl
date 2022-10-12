@@ -17,6 +17,7 @@ public class LightSource : MonoBehaviour
         unit.onEndMove += UpdateLighting;
         unit.onStartTurn += UpdateLighting;
         litTiles = new List<Tile>();
+        UpdateLighting();
     }
 
     private void OnDisable()

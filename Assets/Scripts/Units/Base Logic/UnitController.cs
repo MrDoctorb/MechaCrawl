@@ -15,7 +15,8 @@ public class UnitController : MonoBehaviour, IComparable
     public int maxHP;
     public float speed;
     public int hp { private set; get; }
-    [System.NonSerialized] public float actionPoints;
+    [NonSerialized] public float actionPoints;
+    [NonSerialized] public bool visible;
     public Direction facing;
 
 
@@ -26,6 +27,7 @@ public class UnitController : MonoBehaviour, IComparable
     public event Alert onEndTurn;
     public event Alert onTakeDamage;
     public event Alert onHealthChange;
+    public event Alert onVisibilityChange;
 
     protected SpriteRenderer rend;
 
@@ -80,6 +82,7 @@ public class UnitController : MonoBehaviour, IComparable
         //This needs to be super optimized for multiple people
         //MoveToTile(FindObjectOfType<Entrance>().transform.position);
         transform.position = FindObjectOfType<Entrance>().transform.position;
+        TileManager.TileAt(transform.position).UpdateLighting();
     }
 
     public virtual void StartTurn()
@@ -178,5 +181,12 @@ public class UnitController : MonoBehaviour, IComparable
             hp = maxHP;
         }
         onHealthChange?.Invoke();
+    }
+
+    public void SetVisibility(bool visible)
+    {
+        this.visible = visible;
+        rend.enabled = visible;
+        onVisibilityChange?.Invoke();
     }
 }

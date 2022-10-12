@@ -18,7 +18,7 @@ public class EnemyController : UnitController
     public override void EnterLevel()
     {
         MoveToTile(TileManager.RandomTile().transform.position);
-        GetComponent<SpriteRenderer>().enabled = false;
+        TileManager.TileAt(transform.position).UpdateLighting();
     }
 
     public override void StartTurn()

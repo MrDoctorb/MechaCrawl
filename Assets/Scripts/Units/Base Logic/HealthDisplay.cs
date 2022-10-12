@@ -18,6 +18,7 @@ public class HealthDisplay : MonoBehaviour
             text = GetComponent<Text>();
         }
 
+        unit.onVisibilityChange += SetVisibility;
         unit.onHealthChange += DisplayHealth;
         DisplayHealth();
     }
@@ -32,4 +33,15 @@ public class HealthDisplay : MonoBehaviour
         text.text = unit.hp.ToString();
     }
 
+    void SetVisibility()
+    {
+        if(unit.visible)
+        {
+            text.color = Color.white;
+        }
+        else
+        {
+            text.color  = Color.clear;
+        }
+    }
 }
