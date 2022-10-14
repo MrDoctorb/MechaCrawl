@@ -11,6 +11,7 @@ public class TileManager : MonoBehaviour
 
 
     [SerializeField] GameObject tileref, wallref;
+    [SerializeField] GameObject[] effectTiles;
     [SerializeField] Sprite stairUpSprite, stairDownSprite;
 
     static Dictionary<Vector2, Tile> tiles = new Dictionary<Vector2, Tile>();
@@ -33,10 +34,9 @@ public class TileManager : MonoBehaviour
     {
         DeleteFloor();
         SpawnFloor();
+        AddEffectTiles();
         References.uManager.NewFloorUnitSetup();
     }
-
-    
 
     void DeleteFloor()
     {
@@ -47,7 +47,7 @@ public class TileManager : MonoBehaviour
 
         foreach (Tile tile in FindObjectsOfType<Tile>())
         {
-            if(tile.gameObject != gameObject)
+            if (tile.gameObject != gameObject)
             {
                 Destroy(tile.gameObject);
             }
@@ -127,11 +127,26 @@ public class TileManager : MonoBehaviour
         {
             if (!tiles.ContainsKey(tile + Vector2.up))
             {
-               wallTiles.Add(tile + Vector2.up);
-               Instantiate(wallref, tile + Vector2.up, Quaternion.identity);
+                wallTiles.Add(tile + Vector2.up);
+                Instantiate(wallref, tile + Vector2.up, Quaternion.identity);
             }
         }
         allTiles.AddRange(wallTiles);
+    }
+
+    void AddEffectTiles()
+    {
+        //Very Rudimentary, need to add a weight system -------------------------------------------------------------------
+        foreach (Vector2 tilePos in roomTiles)
+        {
+            if (Random.Range(0, 50) == 0)
+            {
+                Destroy(TileAt(tilePos).gameObject);
+                tiles.Remove(tilePos);
+                GameObject effectTile = effectTiles[Random.Range(0, effectTiles.Length)];
+                tiles.Add(tilePos, Instantiate(effectTile, tilePos, Quaternion.identity).GetComponent<Tile>());
+            }
+        }
     }
 
     public static bool IsTileOpen(Vector2 pos)

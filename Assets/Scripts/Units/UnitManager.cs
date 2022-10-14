@@ -31,6 +31,8 @@ public class UnitManager : MonoBehaviour
     void SpawnEnemies()
     {
         Instantiate(possibleEnemies[Random.Range(0,possibleEnemies.Count)], Vector2.zero, Quaternion.identity);
+        Instantiate(possibleEnemies[Random.Range(0, possibleEnemies.Count)], Vector2.zero, Quaternion.identity);
+        Instantiate(possibleEnemies[Random.Range(0, possibleEnemies.Count)], Vector2.zero, Quaternion.identity);
     }
 
     void DeleteEnemies()
