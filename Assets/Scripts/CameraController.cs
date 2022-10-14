@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     Vector2 previousMousePos;
+
     void Update()
     {
         if (Input.GetMouseButtonDown(1))
@@ -24,8 +25,15 @@ public class CameraController : MonoBehaviour
 
         if(Input.mouseScrollDelta != Vector2.zero)
         {
+            Vector2 startMouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+
             Camera.main.orthographicSize -= Input.mouseScrollDelta.y;
             Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 1, 20);
+
+            Vector2 endMouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+
+            transform.position += (Vector3)(startMouseWorldPos - endMouseWorldPos);
+
         }
     }
 }
