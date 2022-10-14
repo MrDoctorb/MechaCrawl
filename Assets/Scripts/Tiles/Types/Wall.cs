@@ -4,14 +4,6 @@ using UnityEngine;
 using Zanespace;
 public class Wall : Tile
 {
-    void Start()
-    {
-        rend = GetComponent<SpriteRenderer>();
-        SetVisibility(0);
-        type = TileType.BlockAll;
-    }
-
-
     public override void EnterEffect()
     {
         throw new System.NotImplementedException();
