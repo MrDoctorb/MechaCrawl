@@ -36,4 +36,11 @@ public class CameraController : MonoBehaviour
 
         }
     }
+
+    public void NewFloor()
+    {
+        Vector3 newPos = FindObjectOfType<Entrance>().transform.position;
+        newPos.z = -10;
+        transform.position = newPos;
+    }
 }
