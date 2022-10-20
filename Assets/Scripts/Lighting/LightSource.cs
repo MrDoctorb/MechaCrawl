@@ -34,10 +34,10 @@ public class LightSource : MonoBehaviour
         List<Tile> oldTiles = new List<Tile>(litTiles);
 
         //Only Unsubscribe for tiles that are leaving the zone
-        foreach(Tile tile in oldTiles)
+        foreach (Tile tile in oldTiles)
         {
             //Tiles that aren't in both of the sets
-            if(!newTiles.Contains(tile))
+            if (!newTiles.Contains(tile))
             {
                 //Unsubscribe Tile
                 tile.onLightChange -= UpdateLighting;
@@ -50,9 +50,9 @@ public class LightSource : MonoBehaviour
         }
 
         //Only add tiles that aren't already in litTiles
-        foreach(Tile tile in newTiles)
+        foreach (Tile tile in newTiles)
         {
-            if(!litTiles.Contains(tile))
+            if (!litTiles.Contains(tile))
             {
                 //Subscribe Tile
                 tile.onLightChange += UpdateLighting;
@@ -70,15 +70,15 @@ public class LightSource : MonoBehaviour
 
     }
 
-   /* void UpdateLighting()
-    {
+    /* void UpdateLighting()
+     {
 
-        foreach (Tile tile in TilesInSight())
-        {
-            //tile.SetVisibility(Mathf.Abs((brightness + 2 - Functions.GridDistance(transform.position, tile.transform.position))/(float)brightness));
-           // tile.
-        }
-    }*/
+         foreach (Tile tile in TilesInSight())
+         {
+             //tile.SetVisibility(Mathf.Abs((brightness + 2 - Functions.GridDistance(transform.position, tile.transform.position))/(float)brightness));
+            // tile.
+         }
+     }*/
 
     public float Brightness(int distance)
     {
@@ -107,7 +107,10 @@ public class LightSource : MonoBehaviour
                         //If this tile is a wall, add it and stop looking
                         if (sightTile == TileManager.defaultTile || sightTile is Wall)
                         {
-                            tiles.Add(sightTile);
+                            if (sightPos.y >= transform.position.y)
+                            {
+                                tiles.Add(sightTile);
+                            }
                             break;
                         }
                         //If the tiles we have seen so far already have this tile, skip it
@@ -117,11 +120,18 @@ public class LightSource : MonoBehaviour
                         }
                         //Ensure this isn't a diagonal
                         Tile xSide = TileManager.TileAt(sightPos + new Vector2(transform.position.x - sightPos.x, 0).normalized);
-                        Tile ySide = TileManager.TileAt(sightPos + new Vector2(0, transform.position.y - sightPos.y).normalized);   
+                        Tile ySide = TileManager.TileAt(sightPos + new Vector2(0, transform.position.y - sightPos.y).normalized);
                         if ((xSide == TileManager.defaultTile || xSide is Wall) &&(ySide == TileManager.defaultTile || ySide is Wall))
                         {
-                            tiles.Add(xSide);
-                            tiles.Add(ySide);
+
+                            if (xSide.transform.position.y >= transform.position.y)
+                            {
+                                tiles.Add(xSide);
+                            }
+                            if (ySide.transform.position.y >= transform.position.y)
+                            {
+                                tiles.Add(ySide);
+                            }
                             break;
                         }
                         //Add the valid tile to tiles we can see
@@ -134,5 +144,4 @@ public class LightSource : MonoBehaviour
         return tiles.ToArray();
 
     }
-
 }

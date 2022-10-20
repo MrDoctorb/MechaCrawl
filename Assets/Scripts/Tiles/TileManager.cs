@@ -127,7 +127,8 @@ public class TileManager : MonoBehaviour
             if (!tiles.ContainsKey(tile + Vector2.up))
             {
                 wallTiles.Add(tile + Vector2.up);
-                Instantiate(wallref, tile + Vector2.up, Quaternion.identity);
+                Tile wall = Instantiate(wallref, tile + Vector2.up, Quaternion.identity).GetComponent<Tile>();
+                tiles.Add(tile + Vector2.up, wall);
             }
         }
         allTiles.AddRange(wallTiles);
