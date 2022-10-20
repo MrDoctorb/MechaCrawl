@@ -36,7 +36,7 @@ public class TileManager : MonoBehaviour
         SpawnFloor();
         AddEffectTiles();
         References.uManager.NewFloorUnitSetup();
-        Camera.main.GetComponent<CameraController>().NewFloor();
+       // Camera.main.GetComponent<CameraController>().NewFocus();
     }
 
     void DeleteFloor()

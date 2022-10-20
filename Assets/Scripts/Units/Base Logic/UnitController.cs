@@ -87,6 +87,7 @@ public class UnitController : MonoBehaviour, IComparable
 
     public virtual void StartTurn()
     {
+        CameraController.instance.NewFocus(transform.position);
         onStartTurn?.Invoke();
         move.Perform();
     }

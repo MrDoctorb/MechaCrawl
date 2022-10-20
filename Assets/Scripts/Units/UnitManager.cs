@@ -30,7 +30,7 @@ public class UnitManager : MonoBehaviour
 
     void SpawnEnemies()
     {
-        Instantiate(possibleEnemies[Random.Range(0,possibleEnemies.Count)], Vector2.zero, Quaternion.identity);
+        Instantiate(possibleEnemies[Random.Range(0, possibleEnemies.Count)], Vector2.zero, Quaternion.identity);
         Instantiate(possibleEnemies[Random.Range(0, possibleEnemies.Count)], Vector2.zero, Quaternion.identity);
         Instantiate(possibleEnemies[Random.Range(0, possibleEnemies.Count)], Vector2.zero, Quaternion.identity);
     }
@@ -45,7 +45,7 @@ public class UnitManager : MonoBehaviour
 
     public void PlaceUnits()
     {
-        foreach(UnitController unit in allUnits)
+        foreach (UnitController unit in allUnits)
         {
             unit.EnterLevel();
         }
@@ -82,7 +82,7 @@ public class UnitManager : MonoBehaviour
 
     void CalculateNextUnits()
     {
-        if(allUnits.Count <= 0)
+        if (allUnits.Count <= 0)
         {
             Debug.LogError("There are no units to calculate");
             return;
@@ -118,9 +118,9 @@ public class UnitManager : MonoBehaviour
                         occurrenceList[unit] += 1;
                     }
 
-                   testOutput += unit.name;
+                    testOutput += unit.name;
 
-                    if(unit is EnemyController)
+                    if (unit is EnemyController)
                     {
                         testOutput += " (Enemy)";
                     }
