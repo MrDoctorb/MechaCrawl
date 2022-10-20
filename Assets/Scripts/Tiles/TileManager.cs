@@ -34,6 +34,7 @@ public class TileManager : MonoBehaviour
     {
         DeleteFloor();
         SpawnFloor();
+        SpawnWalls();
         AddEffectTiles();
         References.uManager.NewFloorUnitSetup();
        // Camera.main.GetComponent<CameraController>().NewFocus();
@@ -112,9 +113,6 @@ public class TileManager : MonoBehaviour
         down.AddComponent<Exit>();
         down.GetComponent<SpriteRenderer>().sprite = stairDownSprite;
         tiles[exitPos] = down.GetComponent<Exit>();
-
-
-        SpawnWalls();
     }
 
     void SpawnWalls()

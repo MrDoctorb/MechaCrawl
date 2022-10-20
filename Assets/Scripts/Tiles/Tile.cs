@@ -156,6 +156,10 @@ public abstract class Tile : MonoBehaviour
     /// <param name="percentage">1 is fully visible, 0 is invisible</param>
     protected void SetVisibility(float percentage)
     {
+        if(percentage > 1)
+        {
+            rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, 1);
+        }
         rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, percentage);
         lightLevel = percentage;
     }
