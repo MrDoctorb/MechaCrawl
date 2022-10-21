@@ -22,8 +22,8 @@ public abstract class Tile : MonoBehaviour
 
     void OnEnable()
     {
+        rend = GetComponent<SpriteRenderer>();  
         lightSources = new List<LightSource>();
-        rend = GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -37,6 +37,7 @@ public abstract class Tile : MonoBehaviour
         unit.transform.position = transform.position;
         unit.onStartMove += Exit;
         unit.onEndTurn += StopEffect;
+        unit.onDeath += ClearUnit;
 
         EnterEffect();
     }
@@ -48,6 +49,7 @@ public abstract class Tile : MonoBehaviour
 
         unit.onEndTurn -= StopEffect;
         unit.onStartMove -= Exit;
+        unit.onDeath -= ClearUnit;
         unit = null;
     }
 
@@ -160,7 +162,13 @@ public abstract class Tile : MonoBehaviour
         {
             rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, 1);
         }
+        rend = GetComponent<SpriteRenderer>();
         rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, percentage);
         lightLevel = percentage;
+    }
+
+    void ClearUnit()
+    {
+        unit = null;
     }
 }

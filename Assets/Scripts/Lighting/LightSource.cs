@@ -16,6 +16,7 @@ public class LightSource : MonoBehaviour
         unit = GetComponent<UnitController>();
         unit.onEndMove += UpdateLighting;
         unit.onStartTurn += UpdateLighting;
+       // References.tManager.onLevelLoadStart += ClearLighting;
         litTiles = new List<Tile>();
         UpdateLighting();
     }
@@ -25,6 +26,11 @@ public class LightSource : MonoBehaviour
         unit.onEndMove -= UpdateLighting;
         unit.onStartTurn += UpdateLighting;
 
+        foreach(Tile tile in litTiles)
+        {
+            tile.lightSources.Remove(this);
+        }
+        litTiles = new List<Tile>();
     }
 
     void UpdateLighting()
@@ -143,5 +149,10 @@ public class LightSource : MonoBehaviour
 
         return tiles.ToArray();
 
+    }
+
+    void ClearLighting()
+    {
+        litTiles = new List<Tile>();
     }
 }

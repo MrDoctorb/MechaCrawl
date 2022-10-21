@@ -41,6 +41,6 @@ public class Rewire : Effect
 
 
         //VERY TEMPORARY, GET RID OF THIS LATER
-        newUnit.transform.gameObject.AddComponent<LightSource>().brightness = 3;
+        //newUnit.transform.gameObject.AddComponent<LightSource>().brightness = 3;
     }
 }

@@ -26,6 +26,7 @@ public class UnitController : MonoBehaviour, IComparable
     public event Alert onStartTurn;
     public event Alert onEndTurn;
     public event Alert onTakeDamage;
+    public event Alert onDeath;
     public event Alert onHealthChange;
     public event Alert onVisibilityChange;
 
@@ -156,6 +157,7 @@ public class UnitController : MonoBehaviour, IComparable
         }
         else if (hp < 0)
         {
+            onDeath?.Invoke();
             gameObject.SetActive(false);
             Destroy(gameObject);
             return;

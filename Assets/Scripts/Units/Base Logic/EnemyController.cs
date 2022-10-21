@@ -19,6 +19,7 @@ public class EnemyController : UnitController
     {
         MoveToTile(TileManager.RandomTile().transform.position);
         TileManager.TileAt(transform.position).UpdateLighting();
+        SetVisibility(false);
     }
 
     public override void StartTurn()

@@ -8,8 +8,6 @@ using Zanespace;
 public class TileManager : MonoBehaviour
 {
     [SerializeField] Generator gen;
-
-
     [SerializeField] GameObject tileref, wallref;
     [SerializeField] GameObject[] effectTiles;
     [SerializeField] Sprite stairUpSprite, stairDownSprite;
@@ -23,6 +21,9 @@ public class TileManager : MonoBehaviour
 
     public static Tile defaultTile;
 
+    public Alert onLevelLoadStart;
+    public Alert onLevelLoadEnd;
+
     void Start()
     {
         References.tManager = this;
@@ -32,12 +33,14 @@ public class TileManager : MonoBehaviour
     }
     public void NewFloor()
     {
+        onLevelLoadStart?.Invoke();
         DeleteFloor();
         SpawnFloor();
         SpawnWalls();
         AddEffectTiles();
         References.uManager.NewFloorUnitSetup();
-       // Camera.main.GetComponent<CameraController>().NewFocus();
+        onLevelLoadEnd?.Invoke();
+        // Camera.main.GetComponent<CameraController>().NewFocus();
     }
 
     void DeleteFloor()
