@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zanespace;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] float slideSpeed;
     public static CameraController instance;
     Vector2 previousMousePos;
-
 
     private void Start()
     {
@@ -41,7 +41,11 @@ public class CameraController : MonoBehaviour
             Vector2 endMouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
             transform.position += (Vector3)(startMouseWorldPos - endMouseWorldPos);
+        }
 
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            NewFocus(References.uManager.GetMostRecentAlly().transform.position);
         }
     }
 

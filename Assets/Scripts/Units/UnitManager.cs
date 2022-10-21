@@ -10,7 +10,7 @@ public class UnitManager : MonoBehaviour
     List<UnitController> nextUnits;
     [SerializeField] Text tempTurnOrderDisplay;
     [SerializeField] List<GameObject> possibleEnemies = new List<GameObject>();
-
+    UnitController mostRecentAlly;
     private void Awake()
     {
         References.uManager = this;
@@ -142,6 +142,10 @@ public class UnitManager : MonoBehaviour
     {
         if (nextUnits[0].actionPoints > References.ACTIONTHRESHOLD)
         {
+            if (!(nextUnits[0] is EnemyController))
+            {
+                mostRecentAlly = nextUnits[0];
+            }
             nextUnits[0].actionPoints -= References.ACTIONTHRESHOLD;
             nextUnits[0].StartTurn();
         }
@@ -165,5 +169,10 @@ public class UnitManager : MonoBehaviour
         }
         CalculateNextUnits();
         NextTurn();
+    }
+
+    public UnitController GetMostRecentAlly()
+    {
+        return mostRecentAlly;
     }
 }
