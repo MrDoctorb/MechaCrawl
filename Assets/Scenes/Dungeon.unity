@@ -1176,7 +1176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5f8bc4f4efbd1438bfc86190cc2476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brightness: 8
+  brightness: 5
 --- !u!224 &1844484781 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1922312590580427983, guid: 9d970e54077d50048a18ac1647e31ff8, type: 3}

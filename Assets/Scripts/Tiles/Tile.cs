@@ -38,6 +38,11 @@ public abstract class Tile : MonoBehaviour
         unit.onStartMove += Exit;
         unit.onEndTurn += StopEffect;
         unit.onDeath += ClearUnit;
+        
+        if(lightLevel > .2f)
+        {
+            unit.SetVisibility(true);
+        }
 
         EnterEffect();
     }
