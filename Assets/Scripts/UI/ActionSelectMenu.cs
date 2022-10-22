@@ -21,6 +21,7 @@ public class ActionSelectMenu : MonoBehaviour
 
     public void Display(ActionLogic[] actions, Action end)
     {
+        //Set Actions for up to 3 buttons
         for (int i = 0; i < actions.Length; ++i)
         {
             ActionLogic action = actions[i];
@@ -29,7 +30,10 @@ public class ActionSelectMenu : MonoBehaviour
 
             button.transform.GetChild(0).GetComponent<Image>().sprite = action.icon;
             button.GetComponentInChildren<Text>().text = action.actionName;
+            button.GetComponent<ActionButtonDisplay>().description = action.Description();
         }
+
+        //Set the end turn button
         SetButtonDelegates(transform.GetChild(3).gameObject, end);
     }
 

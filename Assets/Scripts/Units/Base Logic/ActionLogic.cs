@@ -13,4 +13,9 @@ public abstract class ActionLogic : MonoBehaviour
     {
         SelectTargets(new Vector2[] { pos });
     }
+
+    public string Description()
+    {
+        return actionName + " does the same thing as you would expect " + actionName + " to do.";
+    }
 }
