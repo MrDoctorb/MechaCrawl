@@ -55,6 +55,10 @@ public abstract class MoveLogic : ActionLogic
         {
             myUnit.SelectAction();
         }
+        else
+        {
+            myUnit.EndTurn();
+        }
     }
 
     public MoveType GetMoveType()

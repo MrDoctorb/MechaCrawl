@@ -960,8 +960,8 @@ GameObject:
   - component: {fileID: 1480741518}
   - component: {fileID: 1480741517}
   - component: {fileID: 1480741519}
-  - component: {fileID: 1480741520}
   - component: {fileID: 1480741521}
+  - component: {fileID: 1480741522}
   m_Layer: 0
   m_Name: Tinkerer
   m_TagString: Untagged
@@ -1148,22 +1148,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1480741520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480741510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d38353463431b5428ffc71a6a8d3187, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  icon: {fileID: 4326872430171513394, guid: 3eb08b22788fbd340968d1aea33767c4, type: 3}
-  actionName: Dynamic Line
-  effects: []
-  spaceSelect: {fileID: 1378082033374136730, guid: b7f5bd3d31d59cf4f8ef8b2be4442057, type: 3}
 --- !u!114 &1480741521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1177,6 +1161,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brightness: 5
+--- !u!114 &1480741522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480741510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 537a815991c7e3643bf2fd383f4026e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  actionName: Dash
+  minRange: 0
+  maxRange: 5
+  moveType: 0
+  spaceSelect: {fileID: 1378082033374136730, guid: 1658d4e784fc98f49af48bd6b915b81b, type: 3}
 --- !u!224 &1844484781 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1922312590580427983, guid: 9d970e54077d50048a18ac1647e31ff8, type: 3}
