@@ -1392,6 +1392,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3329547422665706068, guid: 9d970e54077d50048a18ac1647e31ff8, type: 3}
+      propertyPath: description
+      value: Do nothing, end the unit's turn
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d970e54077d50048a18ac1647e31ff8, type: 3}
 --- !u!1 &2117690261
