@@ -93,8 +93,9 @@ public class AttackLogic : ActionLogic
             {
                 output += " and";
             }
-            output += " ";
-        }        
+            output += ", ";
+        }
+        output += pattern.Description();
         return char.ToUpper(output[0]) + output.Substring(1); 
     }
 }

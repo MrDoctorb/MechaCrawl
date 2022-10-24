@@ -10,4 +10,9 @@ public class DynamicLine : PatternLogic
         return TilePatterns.Line(startPos, startPos + new Vector2(-3, -3));
     }
 
+    public override string Description()
+    {
+        return " to each enemy in a curved line";
+    }
+
 }

@@ -12,6 +12,6 @@ public class Damage : Effect
 
     public override string Description()
     {
-        return "deals " + damage + " damage ";
+        return "deals " + damage + " damage";
     }
 }

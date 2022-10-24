@@ -16,6 +16,21 @@ public class Line : PatternLogic
         return possiblePos.ToArray();
     }
 
+    public override string Description()
+    {
+        string output;
+        if (range > 1)
+        {
+            output = "targets each enemy in a line " + range + " long ";
+        }
+        else
+        {
+            output = "targets an adjacent enemy ";
+        }
+
+        return output;
+    }
+
     /*public override void DisplayAttack()
     {
         for (int i = 0; i < 4; ++i)
