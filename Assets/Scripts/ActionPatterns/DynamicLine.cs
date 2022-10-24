@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zanespace;
 
-public class DynamicLine : AttackLogic
+public class DynamicLine : PatternLogic
 {
-    protected override Vector2[] Pattern(Vector2 startPos)
+    public override Vector2[] Pattern(Vector2 startPos)
     {
         return TilePatterns.Line(startPos, startPos + new Vector2(-3, -3));
     }

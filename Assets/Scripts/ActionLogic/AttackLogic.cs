@@ -4,10 +4,11 @@ using System.Globalization;
 using UnityEngine;
 using Zanespace;
 
-public abstract class AttackLogic : ActionLogic 
+public class AttackLogic : ActionLogic 
 {
     List<UnitController> targets = new List<UnitController>();
     //TargetType type
+    [SerializeField] PatternLogic pattern;
     [SerializeField] Effect[] effects;
 
     //Probably just change this to a color value at some point
@@ -46,7 +47,7 @@ public abstract class AttackLogic : ActionLogic
         {
             Vector2 offset = Functions.DirectionToVector((Direction)i);
             List<Vector2> tiles = new List<Vector2>();
-            foreach(Vector2 possiblePos in Pattern(startPos))
+            foreach(Vector2 possiblePos in pattern.Pattern(startPos))
             {
                 Vector2 pos = Functions.RotatePointAroundPoint(startPos, possiblePos, (Direction)i);
                 if (TileManager.TileAt(pos).type == TileType.BlockAll)
@@ -59,8 +60,6 @@ public abstract class AttackLogic : ActionLogic
         }
         return fourDirections.ToArray();
     }
-
-    protected abstract Vector2[] Pattern(Vector2 startPos);
 
     public override void SelectTargets(Vector2[] positions)
     {

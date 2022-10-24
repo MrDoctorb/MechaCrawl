@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zanespace;
 
-public class Line : AttackLogic
+public class Line : PatternLogic
 {
     [SerializeField] int range;
-    protected override Vector2[] Pattern(Vector2 startPos)
+    public override Vector2[] Pattern(Vector2 startPos)
     {
         List<Vector2> possiblePos = new List<Vector2>();
         for(int i = 0; i < range; ++i)
