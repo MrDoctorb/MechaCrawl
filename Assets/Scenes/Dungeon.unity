@@ -955,13 +955,15 @@ GameObject:
   - component: {fileID: 1480741515}
   - component: {fileID: 1480741513}
   - component: {fileID: 1480741512}
+  - component: {fileID: 1480741523}
   - component: {fileID: 1480741511}
   - component: {fileID: 1480741516}
+  - component: {fileID: 1480741520}
   - component: {fileID: 1480741518}
   - component: {fileID: 1480741517}
-  - component: {fileID: 1480741519}
-  - component: {fileID: 1480741521}
   - component: {fileID: 1480741522}
+  - component: {fileID: 1480741521}
+  - component: {fileID: 1480741519}
   m_Layer: 0
   m_Name: Tinkerer
   m_TagString: Untagged
@@ -981,11 +983,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f23768c0da68f941bc46f4d42b8ca0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 939a84cb534fa104c8609caa3d6c154b, type: 3}
-  actionName: Attack
-  effects:
-  - {fileID: 1480741516}
-  spaceSelect: {fileID: 1378082033374136730, guid: b7f5bd3d31d59cf4f8ef8b2be4442057, type: 3}
   range: 3
 --- !u!114 &1480741512
 MonoBehaviour:
@@ -1123,11 +1120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f23768c0da68f941bc46f4d42b8ca0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  actionName: Rewire
-  effects:
-  - {fileID: 1480741517}
-  spaceSelect: {fileID: 1378082033374136730, guid: b7f5bd3d31d59cf4f8ef8b2be4442057, type: 3}
   range: 1
 --- !u!95 &1480741519
 Animator:
@@ -1148,6 +1140,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1480741520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480741510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd6a7ab3e1f1449468ef1b85a6d1d1da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  actionName: Rewire
+  pattern: {fileID: 1480741518}
+  effects:
+  - {fileID: 1480741517}
+  spaceSelect: {fileID: 1378082033374136730, guid: b7f5bd3d31d59cf4f8ef8b2be4442057, type: 3}
 --- !u!114 &1480741521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1179,6 +1189,24 @@ MonoBehaviour:
   maxRange: 5
   moveType: 0
   spaceSelect: {fileID: 1378082033374136730, guid: 1658d4e784fc98f49af48bd6b915b81b, type: 3}
+--- !u!114 &1480741523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480741510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd6a7ab3e1f1449468ef1b85a6d1d1da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 939a84cb534fa104c8609caa3d6c154b, type: 3}
+  actionName: Laser
+  pattern: {fileID: 1480741511}
+  effects:
+  - {fileID: 1480741516}
+  spaceSelect: {fileID: 1378082033374136730, guid: b7f5bd3d31d59cf4f8ef8b2be4442057, type: 3}
 --- !u!224 &1844484781 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1922312590580427983, guid: 9d970e54077d50048a18ac1647e31ff8, type: 3}

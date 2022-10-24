@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 6784092201675306804}
   - component: {fileID: 6784092201675306805}
   - component: {fileID: 6784092201675306806}
+  - component: {fileID: 4609095044438484921}
   - component: {fileID: 6784092201675306807}
   - component: {fileID: 6784092201675306760}
   - component: {fileID: 6784092201675306761}
@@ -271,6 +272,24 @@ MonoBehaviour:
   maxHP: 4
   speed: 5
   facing: 0
+--- !u!114 &4609095044438484921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6784092201675306802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd6a7ab3e1f1449468ef1b85a6d1d1da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 4326872430171513394, guid: 3eb08b22788fbd340968d1aea33767c4, type: 3}
+  actionName: Gun
+  pattern: {fileID: 6784092201675306807}
+  effects:
+  - {fileID: 6784092201675306760}
+  spaceSelect: {fileID: 1378082033374136730, guid: b7f5bd3d31d59cf4f8ef8b2be4442057, type: 3}
 --- !u!114 &6784092201675306807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,11 +302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f23768c0da68f941bc46f4d42b8ca0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  actionName: Gun
-  effects:
-  - {fileID: 6784092201675306760}
-  spaceSelect: {fileID: 1378082033374136730, guid: b7f5bd3d31d59cf4f8ef8b2be4442057, type: 3}
   range: 3
 --- !u!114 &6784092201675306760
 MonoBehaviour:
