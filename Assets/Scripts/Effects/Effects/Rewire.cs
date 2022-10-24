@@ -43,4 +43,9 @@ public class Rewire : Effect
         //VERY TEMPORARY, GET RID OF THIS LATER
         //newUnit.transform.gameObject.AddComponent<LightSource>().brightness = 3;
     }
+
+    public override string Description()
+    {
+        return "revives mechanical units at 0 hp as an ally and restores them to half hp";
+    }
 }

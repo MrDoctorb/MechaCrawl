@@ -9,4 +9,9 @@ public class Damage : Effect
     {
         unit.TakeDamage(damage);
     }
+
+    public override string Description()
+    {
+        return "deals " + damage + " damage ";
+    }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using Zanespace;
 
@@ -81,5 +82,20 @@ public abstract class AttackLogic : ActionLogic
 
         targets.Clear();
         myUnit.EndTurn();
+    }
+
+    public override string Description()
+    {
+        string output = "";
+        for(int i = 0; i < effects.Length; i++)
+        {
+            output += effects[i].Description();
+            if(i + 1 < effects.Length)
+            {
+                output += " and";
+            }
+            output += " ";
+        }        
+        return char.ToUpper(output[0]) + output.Substring(1); 
     }
 }

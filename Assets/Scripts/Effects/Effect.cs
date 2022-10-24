@@ -5,4 +5,5 @@ using UnityEngine;
 public abstract class Effect : MonoBehaviour
 {
     public abstract void ApplyTo(UnitController unit);
+    public abstract string Description();
 }

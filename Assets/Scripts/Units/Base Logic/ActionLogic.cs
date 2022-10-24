@@ -14,8 +14,7 @@ public abstract class ActionLogic : MonoBehaviour
         SelectTargets(new Vector2[] { pos });
     }
 
-    public string Description()
-    {
-        return actionName + " does the same thing as you would expect " + actionName + " to do.";
-    }
+    //Eventually movement will probably want to be an effect. At that point Action Logic and Move logic
+    //can be merged together. Then we can have a description in Action Logic
+    public abstract string Description();
 }

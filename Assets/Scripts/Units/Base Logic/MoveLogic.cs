@@ -66,4 +66,22 @@ public abstract class MoveLogic : ActionLogic
         return moveType;
     }
 
+    public override string Description()
+    {
+        string output = "Moves to a space ";
+
+        if(minRange > 0)
+        {
+            output += "between " + minRange + " and ";
+        }
+        else
+        {
+            output += "within ";
+        }
+        output += maxRange + " spaces";
+
+
+        return output;
+    }
+
 }
