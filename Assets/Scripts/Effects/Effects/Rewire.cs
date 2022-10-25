@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //TODO: Make Rewire work for enemies too
+[System.Serializable]
 public class Rewire : Effect
 {
     public override void ApplyTo(UnitController unit)
@@ -20,10 +21,10 @@ public class Rewire : Effect
 
             unit.GetComponentInChildren<HealthDisplay>().enabled = false;
 
-            Destroy(unit);
+            Object.Destroy(unit);
 
             //You can stay, for now
-            StartCoroutine(StupidFunction(newUnit));
+            unit.StartCoroutine(StupidFunction(newUnit));
 
         }
     }

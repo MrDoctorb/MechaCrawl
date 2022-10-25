@@ -214,7 +214,6 @@ GameObject:
   - component: {fileID: 6784092201675306806}
   - component: {fileID: 4609095044438484921}
   - component: {fileID: 6784092201675306807}
-  - component: {fileID: 6784092201675306760}
   - component: {fileID: 6784092201675306761}
   - component: {fileID: 4117439417290307718}
   m_Layer: 0
@@ -287,8 +286,6 @@ MonoBehaviour:
   icon: {fileID: 4326872430171513394, guid: 3eb08b22788fbd340968d1aea33767c4, type: 3}
   actionName: Gun
   pattern: {fileID: 6784092201675306807}
-  effects:
-  - {fileID: 6784092201675306760}
   spaceSelect: {fileID: 1378082033374136730, guid: b7f5bd3d31d59cf4f8ef8b2be4442057, type: 3}
 --- !u!114 &6784092201675306807
 MonoBehaviour:
@@ -303,19 +300,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 3
---- !u!114 &6784092201675306760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6784092201675306802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 151df1b3288faa241bc51dbf6ad192c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
 --- !u!212 &6784092201675306761
 SpriteRenderer:
   m_ObjectHideFlags: 0

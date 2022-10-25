@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection;
+using System.Linq;
 using UnityEngine;
 using Zanespace;
 
@@ -9,11 +12,30 @@ public class AttackLogic : ActionLogic
     List<UnitController> targets = new List<UnitController>();
     //TargetType type
     [SerializeField] PatternLogic pattern;
-    [SerializeField] Effect[] effects;
+    //public Effect[] effects;
+    [SerializeReference]public List<Effect> effects = new List<Effect>();
+    public Damage test;
 
     //Probably just change this to a color value at some point
     public GameObject spaceSelect;
 
+    private void Start()
+    {
+        //effectTypes = FindEffectSubClasses().ToArray();
+
+        foreach (Type type in FindEffectSubClasses())
+        {
+            effects.Add((Effect)Activator.CreateInstance(type));
+        }
+    }
+
+    public IEnumerable<Type> FindEffectSubClasses()
+    {
+        var baseType = typeof(Effect);
+        var assembly = baseType.Assembly;
+
+        return assembly.GetTypes().Where(t => t.IsSubclassOf(baseType));
+    }
     public override void Perform()
     {
         foreach(Vector2[] tileGroup in ValidTiles(transform.position))
@@ -86,10 +108,10 @@ public class AttackLogic : ActionLogic
     public override string Description()
     {
         string output = "";
-        for(int i = 0; i < effects.Length; i++)
+        for(int i = 0; i < effects.Count; i++)
         {
             output += effects[i].Description();
-            if(i + 1 < effects.Length)
+            if(i + 1 < effects.Count)
             {
                 output += " and";
             }
@@ -98,4 +120,6 @@ public class AttackLogic : ActionLogic
         output += pattern.Description();
         return char.ToUpper(output[0]) + output.Substring(1); 
     }
+
+
 }

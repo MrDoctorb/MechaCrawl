@@ -1,9 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public abstract class Effect : MonoBehaviour
+[System.Serializable]
+public class Effect
 {
-    public abstract void ApplyTo(UnitController unit);
-    public abstract string Description();
+    public virtual void ApplyTo(UnitController unit)
+    {
+        throw new System.Exception("AA");
+    }
+    public virtual string Description()
+    {
+        throw new System.Exception("AA");
+    }
 }

@@ -957,10 +957,8 @@ GameObject:
   - component: {fileID: 1480741512}
   - component: {fileID: 1480741523}
   - component: {fileID: 1480741511}
-  - component: {fileID: 1480741516}
   - component: {fileID: 1480741520}
   - component: {fileID: 1480741518}
-  - component: {fileID: 1480741517}
   - component: {fileID: 1480741522}
   - component: {fileID: 1480741521}
   - component: {fileID: 1480741519}
@@ -1083,31 +1081,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1480741516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480741510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 151df1b3288faa241bc51dbf6ad192c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 4
---- !u!114 &1480741517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480741510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0cd2e714f3e48b48bf70d3dd295fbea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1480741518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1155,8 +1128,7 @@ MonoBehaviour:
   icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   actionName: Rewire
   pattern: {fileID: 1480741518}
-  effects:
-  - {fileID: 1480741517}
+  effects: []
   spaceSelect: {fileID: 1378082033374136730, guid: b7f5bd3d31d59cf4f8ef8b2be4442057, type: 3}
 --- !u!114 &1480741521
 MonoBehaviour:
@@ -1205,7 +1177,7 @@ MonoBehaviour:
   actionName: Laser
   pattern: {fileID: 1480741511}
   effects:
-  - {fileID: 1480741516}
+  - {fileID: 0}
   spaceSelect: {fileID: 1378082033374136730, guid: b7f5bd3d31d59cf4f8ef8b2be4442057, type: 3}
 --- !u!224 &1844484781 stripped
 RectTransform:
