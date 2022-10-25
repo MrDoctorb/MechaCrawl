@@ -23,10 +23,10 @@ public class AttackLogic : ActionLogic
     {
         //effectTypes = FindEffectSubClasses().ToArray();
 
-        foreach (Type type in FindEffectSubClasses())
+       /* foreach (Type type in FindEffectSubClasses())
         {
             effects.Add((Effect)Activator.CreateInstance(type));
-        }
+        }*/
     }
 
     public IEnumerable<Type> FindEffectSubClasses()
