@@ -956,9 +956,7 @@ GameObject:
   - component: {fileID: 1480741513}
   - component: {fileID: 1480741512}
   - component: {fileID: 1480741523}
-  - component: {fileID: 1480741511}
   - component: {fileID: 1480741520}
-  - component: {fileID: 1480741518}
   - component: {fileID: 1480741522}
   - component: {fileID: 1480741521}
   - component: {fileID: 1480741519}
@@ -969,19 +967,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1480741511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480741510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f23768c0da68f941bc46f4d42b8ca0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 3
 --- !u!114 &1480741512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1081,19 +1066,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1480741518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480741510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f23768c0da68f941bc46f4d42b8ca0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 1
 --- !u!95 &1480741519
 Animator:
   serializedVersion: 3
@@ -1127,13 +1099,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   actionName: Rewire
-  pattern: {fileID: 1480741518}
+  pattern:
+    id: 0
   effects:
-  - id: 0
+  - id: 1
   spaceSelect: {fileID: 1378082033374136730, guid: b7f5bd3d31d59cf4f8ef8b2be4442057, type: 3}
   references:
     version: 1
     00000000:
+      type: {class: Line, ns: , asm: Assembly-CSharp}
+      data:
+        range: 1
+    00000001:
       type: {class: Rewire, ns: , asm: Assembly-CSharp}
 --- !u!114 &1480741521
 MonoBehaviour:
@@ -1180,21 +1157,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 939a84cb534fa104c8609caa3d6c154b, type: 3}
   actionName: Laser
-  pattern: {fileID: 1480741511}
+  pattern:
+    id: 0
   effects:
-  - id: 0
   - id: 1
   spaceSelect: {fileID: 1378082033374136730, guid: b7f5bd3d31d59cf4f8ef8b2be4442057, type: 3}
   references:
     version: 1
     00000000:
-      type: {class: Damage, ns: , asm: Assembly-CSharp}
+      type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
-        damage: 0
+        range: 3
     00000001:
       type: {class: Damage, ns: , asm: Assembly-CSharp}
       data:
-        damage: 0
+        damage: 4
 --- !u!224 &1844484781 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1922312590580427983, guid: 9d970e54077d50048a18ac1647e31ff8, type: 3}

@@ -11,7 +11,7 @@ public class AttackLogic : ActionLogic
 {
     List<UnitController> targets = new List<UnitController>();
     //TargetType type
-    [SerializeField] PatternLogic pattern;
+    [SelectType][SerializeReference] PatternLogic pattern;
     //public Effect[] effects;
     [SelectType][SerializeReference]public List<Effect> effects = new List<Effect>();
 

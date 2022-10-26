@@ -50,14 +50,15 @@ public class SelectTypeAttributeDrawer : PropertyDrawer
 
         //Check to see if we have selected a new type in our dropdown menu 
         //This also sets the appearance of the dropdown itslef
-        int newSelectedIndex = EditorGUI.Popup(new Rect(position.x + 5, position.y, 75, EditorGUIUtility.singleLineHeight), menuIndex, menuOptions);
-        if (menuIndex != newSelectedIndex)
+            
+        int newMenuIndex = EditorGUI.Popup(new Rect(position.x + 5, position.y, 100, EditorGUIUtility.singleLineHeight), menuIndex, menuOptions);
+        if (menuIndex != newMenuIndex)
         {
             //Allows us to Undo through each iteration of previous actions
             Undo.RegisterCompleteObjectUndo(property.serializedObject.targetObject, "Type Changed");
 
             //Assign the type to the given type
-            Type selectedType = subclasses[newSelectedIndex];
+            Type selectedType = subclasses[newMenuIndex];
 
             //Changes the type of our modified property to the selected type
             //FormatterServices allows us to set it to a type w/o errors

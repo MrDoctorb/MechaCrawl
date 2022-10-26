@@ -166,9 +166,14 @@ public class TileManager : MonoBehaviour
         return tiles[pos];
     }
 
-    public static Tile RandomTile()
+    public static Tile RandomFloorTile()
     {
-        return tiles[tiles.Keys.ElementAt(Random.Range(0, tiles.Count))];
+        Tile output = defaultTile;
+        while(output is Wall)
+        {
+            output = tiles[tiles.Keys.ElementAt(Random.Range(0, tiles.Count))];
+        }
+        return output;
     }
 
     public void ColorCodeTiles()

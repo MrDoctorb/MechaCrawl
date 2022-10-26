@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 
@@ -17,7 +16,7 @@ public class EnemyController : UnitController
 
     public override void EnterLevel()
     {
-        MoveToTile(TileManager.RandomTile().transform.position);
+        MoveToTile(TileManager.RandomFloorTile().transform.position);
         TileManager.TileAt(transform.position).UpdateLighting();
         SetVisibility(false);
     }
