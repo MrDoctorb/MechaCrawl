@@ -97,3 +97,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   unit: {fileID: 0}
+  usedSprite: {fileID: 21300000, guid: 9c59106b66bbe1c4ea68e51e9264343f, type: 3}

@@ -4,17 +4,30 @@ using UnityEngine;
 
 public class HealTile : Tile
 {
+    bool active = true;
+    [SerializeField] Sprite usedSprite;
     public override void EnterEffect()
     {
-        unit.Heal(1);
+        if(active)
+        {
+            unit.Heal(1);
+        }
     }
 
     public override void ExitEffect()
     {
+        if(active)
+        {
+            active = false;
+            GetComponent<SpriteRenderer>().sprite = usedSprite;
+        }
     }
 
     public override void StopEffect()
     {
-        unit.Heal(1);
+        if(active)
+        {
+            unit.Heal(1);
+        }
     }
 }
