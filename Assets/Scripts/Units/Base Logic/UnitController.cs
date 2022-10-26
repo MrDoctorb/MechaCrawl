@@ -177,7 +177,6 @@ public class UnitController : MonoBehaviour, IComparable
 
     public void SetHealth(int amount)
     {
-
         hp = amount;
         if (hp > maxHP)
         {

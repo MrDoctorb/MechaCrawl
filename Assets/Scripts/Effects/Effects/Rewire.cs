@@ -24,7 +24,7 @@ public class Rewire : Effect
             Object.Destroy(unit);
 
             //You can stay, for now
-            unit.StartCoroutine(StupidFunction(newUnit));
+            newUnit.StartCoroutine(StupidFunction(newUnit));
 
         }
     }
