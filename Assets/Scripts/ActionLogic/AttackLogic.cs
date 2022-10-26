@@ -13,8 +13,7 @@ public class AttackLogic : ActionLogic
     //TargetType type
     [SerializeField] PatternLogic pattern;
     //public Effect[] effects;
-    [SerializeReference]public List<Effect> effects = new List<Effect>();
-    public Damage test;
+    [SelectType][SerializeReference]public List<Effect> effects = new List<Effect>();
 
     //Probably just change this to a color value at some point
     public GameObject spaceSelect;

@@ -286,7 +286,13 @@ MonoBehaviour:
   icon: {fileID: 4326872430171513394, guid: 3eb08b22788fbd340968d1aea33767c4, type: 3}
   actionName: Gun
   pattern: {fileID: 6784092201675306807}
+  effects:
+  - id: 0
   spaceSelect: {fileID: 1378082033374136730, guid: b7f5bd3d31d59cf4f8ef8b2be4442057, type: 3}
+  references:
+    version: 1
+    00000000:
+      type: {class: Rewire, ns: , asm: Assembly-CSharp}
 --- !u!114 &6784092201675306807
 MonoBehaviour:
   m_ObjectHideFlags: 0

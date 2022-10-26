@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
-public class Effect
+public abstract class Effect
 {
     public virtual void ApplyTo(UnitController unit)
     {
