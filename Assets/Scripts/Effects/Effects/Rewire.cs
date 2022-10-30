@@ -39,10 +39,11 @@ public class Rewire : Effect
         yield return new WaitForEndOfFrame();
         newUnit.GetComponentInChildren<HealthDisplay>().enabled = true;
         newUnit.SetHealth(newUnit.maxHP /2);
-
-
-        //VERY TEMPORARY, GET RID OF THIS LATER
-        //newUnit.transform.gameObject.AddComponent<LightSource>().brightness = 3;
+        LightSource light = newUnit.GetComponent<LightSource>();
+        if(light != null)
+        {
+            light.enabled = true;
+        }
     }
 
     public override string Description()
