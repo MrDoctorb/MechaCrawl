@@ -112,7 +112,6 @@ public abstract class Tile : MonoBehaviour
 
     void OnDestroy()
     {
-        print("AA");
         if (unit != null)
         {
             unit.onEndTurn -= StopEffect;

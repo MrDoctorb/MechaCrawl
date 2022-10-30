@@ -59,7 +59,6 @@ public class LightSource : MonoBehaviour
                 tile.onLightChange -= UpdateLighting;
                 tile.lightSources.Remove(this);
                 //Set tile to be "explored" darkness
-                print(tile.gameObject);
                 tile.UpdateLighting();
                 //Remove tile from litTiles
                 litTiles.Remove(tile);
