@@ -29,6 +29,7 @@ public abstract class Tile : MonoBehaviour
     void Start()
     {
         SetVisibility(0);
+        rend.sortingOrder = -(int)transform.position.y;
     }
 
     public void Enter(UnitController newUnit)
