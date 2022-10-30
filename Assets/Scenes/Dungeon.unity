@@ -995,7 +995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537a815991c7e3643bf2fd383f4026e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: f3fe3fdb8f99b304295e9fccbfbb7064, type: 3}
   actionName: Walk
   minRange: 0
   maxRange: 5
@@ -1138,7 +1138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537a815991c7e3643bf2fd383f4026e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: f3fe3fdb8f99b304295e9fccbfbb7064, type: 3}
   actionName: Dash
   minRange: 0
   maxRange: 5
@@ -1156,7 +1156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6a7ab3e1f1449468ef1b85a6d1d1da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 939a84cb534fa104c8609caa3d6c154b, type: 3}
+  icon: {fileID: 21300000, guid: 2e7ab90c94c2ac040a0a842b22251a84, type: 3}
   actionName: Laser
   pattern:
     id: 0
@@ -1283,17 +1283,13 @@ PrefabInstance:
       value: End Turn
       objectReference: {fileID: 0}
     - target: {fileID: 1922312590545271113, guid: 9d970e54077d50048a18ac1647e31ff8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.92387956
-      objectReference: {fileID: 0}
-    - target: {fileID: 1922312590545271113, guid: 9d970e54077d50048a18ac1647e31ff8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.38268343
-      objectReference: {fileID: 0}
-    - target: {fileID: 1922312590545271113, guid: 9d970e54077d50048a18ac1647e31ff8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 45
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1922312590545271118, guid: 9d970e54077d50048a18ac1647e31ff8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bea99b6976dac1b4084c92f8ccd67096, type: 3}
     - target: {fileID: 1922312590580427982, guid: 9d970e54077d50048a18ac1647e31ff8, type: 3}
       propertyPath: m_Name
       value: End Turn
@@ -1368,7 +1364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1922312590580427983, guid: 9d970e54077d50048a18ac1647e31ff8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 525
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 1922312590580427983, guid: 9d970e54077d50048a18ac1647e31ff8, type: 3}
       propertyPath: m_AnchoredPosition.y

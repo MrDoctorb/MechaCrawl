@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537a815991c7e3643bf2fd383f4026e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: f3fe3fdb8f99b304295e9fccbfbb7064, type: 3}
   actionName: Float
   minRange: 0
   maxRange: 5
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6a7ab3e1f1449468ef1b85a6d1d1da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: bb1c6de93a580364aab1eae633fd820d, type: 3}
   actionName: Headbutt
   pattern:
     id: 0
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6a7ab3e1f1449468ef1b85a6d1d1da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 0aa1c67a64717824c8c3b4ae9031c28c, type: 3}
   actionName: Stun Gun
   pattern:
     id: 0

@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537a815991c7e3643bf2fd383f4026e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: f3fe3fdb8f99b304295e9fccbfbb7064, type: 3}
   actionName: 
   minRange: 0
   maxRange: 5
@@ -353,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6a7ab3e1f1449468ef1b85a6d1d1da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 4326872430171513394, guid: 3eb08b22788fbd340968d1aea33767c4, type: 3}
+  icon: {fileID: 21300000, guid: 2e7ab90c94c2ac040a0a842b22251a84, type: 3}
   actionName: Gun
   pattern:
     id: 0
