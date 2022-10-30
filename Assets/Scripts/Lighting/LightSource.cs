@@ -16,7 +16,6 @@ public class LightSource : MonoBehaviour
         unit = GetComponent<UnitController>();
         unit.onEndMove += UpdateLighting;
         unit.onStartTurn += UpdateLighting;
-        // References.tManager.onLevelLoadStart += ClearLighting;
         litTiles = new List<Tile>();
         if (unit is EnemyController)
         {
@@ -27,10 +26,15 @@ public class LightSource : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        References.tManager.onLevelLoadStart += ClearLighting;
+    }
+
     private void OnDisable()
     {
         unit.onEndMove -= UpdateLighting;
-        unit.onStartTurn += UpdateLighting;
+        unit.onStartTurn -= UpdateLighting;
 
         foreach(Tile tile in litTiles)
         {
@@ -49,12 +53,13 @@ public class LightSource : MonoBehaviour
         foreach (Tile tile in oldTiles)
         {
             //Tiles that aren't in both of the sets
-            if (!newTiles.Contains(tile))
+            if (!newTiles.Contains(tile) && tile != null)
             {
                 //Unsubscribe Tile
                 tile.onLightChange -= UpdateLighting;
                 tile.lightSources.Remove(this);
                 //Set tile to be "explored" darkness
+                print(tile.gameObject);
                 tile.UpdateLighting();
                 //Remove tile from litTiles
                 litTiles.Remove(tile);
@@ -81,16 +86,6 @@ public class LightSource : MonoBehaviour
         }
 
     }
-
-    /* void UpdateLighting()
-     {
-
-         foreach (Tile tile in TilesInSight())
-         {
-             //tile.SetVisibility(Mathf.Abs((brightness + 2 - Functions.GridDistance(transform.position, tile.transform.position))/(float)brightness));
-            // tile.
-         }
-     }*/
 
     public float Brightness(int distance)
     {

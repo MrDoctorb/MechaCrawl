@@ -33,6 +33,7 @@ public class TileManager : MonoBehaviour
     }
     public void NewFloor()
     {
+        print("BB");
         onLevelLoadStart?.Invoke();
         DeleteFloor();
         SpawnFloor();
@@ -45,18 +46,24 @@ public class TileManager : MonoBehaviour
 
     void DeleteFloor()
     {
+        print("DELETIG");
+        foreach(Tile tile in tiles.Values)
+        {
+            Destroy(tile.gameObject);
+            print("EHEHE");
+        }
         tiles.Clear();
         roomTiles.Clear();
         hallwayTiles.Clear();
         connectorTiles.Clear();
 
-        foreach (Tile tile in FindObjectsOfType<Tile>())
+        /*foreach (Tile tile in FindObjectsOfType<Tile>())
         {
             if (tile.gameObject != gameObject)
             {
                 Destroy(tile.gameObject);
             }
-        }
+        }*/
     }
 
     void SpawnFloor()

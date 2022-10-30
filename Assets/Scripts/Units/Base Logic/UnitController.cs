@@ -84,6 +84,11 @@ public class UnitController : MonoBehaviour, IComparable
         //MoveToTile(FindObjectOfType<Entrance>().transform.position);
         transform.position = FindObjectOfType<Entrance>().transform.position;
         TileManager.TileAt(transform.position).UpdateLighting();
+
+
+
+        //VERY TEMPORARY REMOVE ON SIGHT
+        transform.position = FindObjectOfType<Exit>().transform.position;
     }
 
     public virtual void StartTurn()

@@ -22,7 +22,7 @@ public abstract class Tile : MonoBehaviour
 
     void OnEnable()
     {
-        rend = GetComponent<SpriteRenderer>();  
+        rend = GetComponent<SpriteRenderer>();
         lightSources = new List<LightSource>();
     }
 
@@ -38,8 +38,8 @@ public abstract class Tile : MonoBehaviour
         unit.onStartMove += Exit;
         unit.onEndTurn += StopEffect;
         unit.onDeath += ClearUnit;
-        
-        if(lightLevel > .2f)
+
+        if (lightLevel > .2f)
         {
             unit.SetVisibility(true);
         }
@@ -112,6 +112,7 @@ public abstract class Tile : MonoBehaviour
 
     void OnDestroy()
     {
+        print("AA");
         if (unit != null)
         {
             unit.onEndTurn -= StopEffect;
@@ -163,12 +164,19 @@ public abstract class Tile : MonoBehaviour
     /// <param name="percentage">1 is fully visible, 0 is invisible</param>
     protected void SetVisibility(float percentage)
     {
-        if(percentage > 1)
+        if (percentage > 1)
         {
             rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, 1);
         }
-        rend = GetComponent<SpriteRenderer>();
-        rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, percentage);
+        else
+        {
+            if(gameObject == null)
+            {
+                Debug.Log("Huh");
+            }
+            rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, percentage);
+        }
+
         lightLevel = percentage;
     }
 
