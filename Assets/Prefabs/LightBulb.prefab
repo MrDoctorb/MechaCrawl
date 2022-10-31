@@ -194,7 +194,7 @@ MonoBehaviour:
     00000000:
       type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
-        range: 0
+        range: 2
     00000001:
       type: {class: Exhaust, ns: , asm: Assembly-CSharp}
       data:
