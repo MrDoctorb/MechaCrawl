@@ -11,6 +11,9 @@ public class UnitManager : MonoBehaviour
     [SerializeField] Text tempTurnOrderDisplay;
     [SerializeField] List<GameObject> possibleEnemies = new List<GameObject>();
     UnitController mostRecentAlly;
+
+    public event Alert onTurnStart;
+
     private void Awake()
     {
         References.uManager = this;

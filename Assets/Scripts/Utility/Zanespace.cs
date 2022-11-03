@@ -10,6 +10,8 @@ namespace Zanespace
         public static UnitManager uManager;
         public static TileManager tManager;
         public static ActionSelectMenu actionSelectMenu;
+        public static Color allyOutline = new Color(40/255f, 204/255f, 66/255f);
+        public static Color enemyOutline = new Color(64/255f, 16/255f, 16/255f);
     }
 
     public static class Functions
