@@ -33,13 +33,17 @@ public class LightSource : MonoBehaviour
 
     private void OnDisable()
     {
+        
         unit.onEndMove -= UpdateLighting;
         unit.onStartTurn -= UpdateLighting;
+        References.tManager.onLevelLoadStart -= ClearLighting;
 
-        foreach(Tile tile in litTiles)
-        {
+        foreach (Tile tile in litTiles)
+        { 
+
             tile.onLightChange -= UpdateLighting;
             tile.lightSources.Remove(this);
+            tile.UpdateLighting();
         }
         litTiles = new List<Tile>();
     }

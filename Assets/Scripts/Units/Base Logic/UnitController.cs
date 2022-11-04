@@ -140,6 +140,39 @@ public class UnitController : MonoBehaviour, IComparable
         }
     }
 
+
+    //Flashes between red and white quickly
+    IEnumerator DamageAnim()
+    {
+        float totalTime = .75f;
+        float loops = 2;
+        float timer;
+        int countingLoops = 0;
+        while (countingLoops < loops)
+        {
+            timer = 0;
+            print("Loop num " + countingLoops);
+            //Go to Red
+            while(timer < (totalTime/loops)/2)
+            {
+                timer += Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+                rend.color = Color.Lerp(Color.white, Color.red, timer/(totalTime/loops/2));
+            }
+            //Go back
+            while(timer < totalTime/loops)
+            {
+                timer += Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+                rend.color = Color.Lerp(Color.red, Color.white, (timer-(totalTime/loops/2))/(totalTime/loops/2));
+            }
+            yield return new WaitForEndOfFrame();
+            countingLoops++;
+        }
+        rend.color = Color.white;
+
+    }
+
     /// <summary>
     /// Causes the target to take an amount of damage.
     /// Effects that trigger when damage is taken trigger after damage is dealt
@@ -153,7 +186,7 @@ public class UnitController : MonoBehaviour, IComparable
         {
             dmg = 0;
         }
-
+        StartCoroutine(DamageAnim());
         SetHealth(hp - dmg);
         onTakeDamage?.Invoke();
     }
