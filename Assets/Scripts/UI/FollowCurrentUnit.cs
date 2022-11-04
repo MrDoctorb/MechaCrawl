@@ -6,8 +6,40 @@ using Zanespace;
 public class FollowCurrentUnit : MonoBehaviour
 {
     UnitManager manager;
+    UnitController target;
+    SpriteRenderer rend;
     private void Start()
     {
-        //Subscribe To the current unit, follow them on their turn, move to the next ect; 
+        rend = GetComponent<SpriteRenderer>();
+        manager = References.uManager;
+        manager.onTurnStart += UpdateTarget;
+    }
+
+    void UpdateTarget()
+    {
+        if(target != null)
+        {
+
+            target.onEndMove -= MoveTo;
+            target.onStartTurn -= MoveTo;
+        }
+
+        target = manager.GetMostRecentUnit();
+        target.onEndMove += MoveTo;
+        target.onStartTurn += MoveTo;
+
+    }
+
+    void MoveTo()
+    {
+        transform.position = target.transform.position;
+        if(target.visible)
+        {
+            rend.enabled = true;
+        }
+        else
+        {
+            rend.enabled = false;
+        }
     }
 }

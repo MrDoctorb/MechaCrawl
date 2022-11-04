@@ -21,6 +21,8 @@ public class UnitManager : MonoBehaviour
 
     void Start()
     {
+        //Set inital ally to the player
+        mostRecentAlly = allUnits[0];
         CalculateNextUnits();
     }
 
@@ -149,6 +151,8 @@ public class UnitManager : MonoBehaviour
             {
                 mostRecentAlly = nextUnits[0];
             }
+
+            onTurnStart?.Invoke();
             nextUnits[0].actionPoints -= References.ACTIONTHRESHOLD;
             nextUnits[0].StartTurn();
         }
@@ -177,5 +181,10 @@ public class UnitManager : MonoBehaviour
     public UnitController GetMostRecentAlly()
     {
         return mostRecentAlly;
+    }
+
+    public UnitController GetMostRecentUnit()
+    {
+        return nextUnits[0];
     }
 }

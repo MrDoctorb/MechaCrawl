@@ -44,6 +44,10 @@ public abstract class Tile : MonoBehaviour
         {
             unit.SetVisibility(true);
         }
+        else
+        {
+            unit.SetVisibility(false);
+        }
 
         EnterEffect();
     }

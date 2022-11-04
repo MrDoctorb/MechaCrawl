@@ -16,7 +16,7 @@ public class UnitController : MonoBehaviour, IComparable
     public float speed;
     public int hp { private set; get; }
     [NonSerialized] public float actionPoints;
-    [NonSerialized] public bool visible;
+    public bool visible { private set; get; }
     public Direction facing;
 
 
@@ -38,6 +38,10 @@ public class UnitController : MonoBehaviour, IComparable
         if (gameObject.name.Contains("(Clone)"))
         {
             gameObject.name = gameObject.name.Replace("(Clone)", "");
+        }
+        if(GetComponent<LightSource>())
+        {
+            SetVisibility(true);
         }
 
         References.uManager.AddUnit(this);
@@ -149,19 +153,6 @@ public class UnitController : MonoBehaviour, IComparable
         }
 
         SetHealth(hp - dmg);
-
-        if (hp == 0)
-        {
-            enabled = false;
-            return;
-        }
-        else if (hp < 0)
-        {
-            onDeath?.Invoke();
-            gameObject.SetActive(false);
-            Destroy(gameObject);
-            return;
-        }
         onTakeDamage?.Invoke();
     }
 
@@ -181,6 +172,25 @@ public class UnitController : MonoBehaviour, IComparable
         if (hp > maxHP)
         {
             hp = maxHP;
+        }
+        if (hp == 0)
+        {
+            if (this is EnemyController)
+            {
+                enabled = false;
+            }
+            else
+            {
+                hp = -1;
+            }
+            return;
+        }
+        if (hp < 0)
+        {
+            onDeath?.Invoke();
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+            return;
         }
         onHealthChange?.Invoke();
     }

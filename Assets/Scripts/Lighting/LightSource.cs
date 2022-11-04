@@ -38,6 +38,7 @@ public class LightSource : MonoBehaviour
 
         foreach(Tile tile in litTiles)
         {
+            tile.onLightChange -= UpdateLighting;
             tile.lightSources.Remove(this);
         }
         litTiles = new List<Tile>();
