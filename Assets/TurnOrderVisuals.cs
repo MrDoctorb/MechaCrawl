@@ -66,5 +66,6 @@ public class TurnOrderVisuals : MonoBehaviour
                 panels[i].color = References.allyOutline;
             }
         }
+        containers[5].SetTrigger("Reset");
     }
 }

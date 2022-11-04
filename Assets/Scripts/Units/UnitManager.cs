@@ -87,31 +87,44 @@ public class UnitManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Calculates the upcoming turn order
+    /// </summary>
     void CalculateNextUnits()
     {
+        //Stops the process if ther are no units
         if (allUnits.Count <= 0)
         {
             Debug.LogError("There are no units to calculate");
             return;
         }
 
+        //Resets the output list
         nextUnits = new List<UnitController>();
+
+        //Lists for calculating
         List<UnitController> tempList = new List<UnitController>(allUnits);
         Dictionary<UnitController, int> occurrenceList = new Dictionary<UnitController, int>();
+
+        //Modifier increases if there aren't enough units to fill the list,
+        //continues to calculate the next theoretical turns
         int modifier = 0;
         do
-        {
-            tempList.Sort();
+        { 
+            //Assume that no one has taken an action
             bool noActions = true;
+
             foreach (UnitController unit in tempList)
             {
+                //The number of times this unit has appeared in the upcoming list
                 int occurrences = 0;
                 if (occurrenceList.ContainsKey(unit))
                 {
                     occurrences = occurrenceList[unit];
                 }
+
                 if ((unit.actionPoints - (References.ACTIONTHRESHOLD * occurrences)) +
-                   ((unit.speed / tempList.Count) * modifier) > References.ACTIONTHRESHOLD)
+                   ((unit.speed / tempList.Count) * modifier) >= References.ACTIONTHRESHOLD)
                 {
                     nextUnits.Add(unit);
                     noActions = false;
@@ -137,7 +150,7 @@ public class UnitManager : MonoBehaviour
     }
     void NextTurn()
     {
-        if (nextUnits[0].actionPoints > References.ACTIONTHRESHOLD)
+        if (nextUnits[0].actionPoints >= References.ACTIONTHRESHOLD)
         {
             if (!(nextUnits[0] is EnemyController))
             {
@@ -157,16 +170,18 @@ public class UnitManager : MonoBehaviour
     public void EndTurn()
     {
         StartCoroutine(BetweenTurns());
+
+        CalculateNextUnits();
     }
 
     private IEnumerator BetweenTurns()
     {
-        yield return new WaitForEndOfFrame();
+        // yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(.5f);
         foreach (UnitController unit in allUnits)
         {
             unit.actionPoints += unit.speed / AmountOfUnits();
         }
-        CalculateNextUnits();
         NextTurn();
     }
 

@@ -353,6 +353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 4
   speed: 5
+  actionPoints: 0
   facing: 0
 --- !u!114 &4609095044438484921
 MonoBehaviour:
