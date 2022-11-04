@@ -151,7 +151,6 @@ public class UnitController : MonoBehaviour, IComparable
         while (countingLoops < loops)
         {
             timer = 0;
-            print("Loop num " + countingLoops);
             //Go to Red
             while(timer < (totalTime/loops)/2)
             {

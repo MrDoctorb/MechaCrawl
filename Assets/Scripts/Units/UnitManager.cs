@@ -6,8 +6,19 @@ using Zanespace;
 
 public class UnitManager : MonoBehaviour
 {
-    //VERY TEMPORARY
+    //VERY TEMPORARY MENU FIELDS WILL MAKE SEPERATE SCRIPT LATER
     [SerializeField] GameObject menu;
+    [SerializeField] GameObject pause;
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = pause.activeSelf ? 1 : 0;
+               pause.SetActive(!pause.activeSelf);
+            
+        }
+    }
+
 
     List<UnitController> allUnits = new List<UnitController>();
     List<UnitController> nextUnits;

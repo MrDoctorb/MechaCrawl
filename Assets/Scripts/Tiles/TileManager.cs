@@ -56,7 +56,7 @@ public class TileManager : MonoBehaviour
 
     void DeleteFloor()
     {
-        foreach(Tile tile in tiles.Values)
+        foreach (Tile tile in tiles.Values)
         {
             Destroy(tile.gameObject);
         }
@@ -151,10 +151,14 @@ public class TileManager : MonoBehaviour
         {
             if (Random.Range(0, 50) == 0)
             {
-                Destroy(TileAt(tilePos).gameObject);
-                tiles.Remove(tilePos);
-                GameObject effectTile = effectTiles[Random.Range(0, effectTiles.Length)];
-                tiles.Add(tilePos, Instantiate(effectTile, tilePos, Quaternion.identity).GetComponent<Tile>());
+                //Only remove base tiles
+                if (TileAt(tilePos).GetType() == typeof(Tile))
+                {
+                    Destroy(TileAt(tilePos).gameObject);
+                    tiles.Remove(tilePos);
+                    GameObject effectTile = effectTiles[Random.Range(0, effectTiles.Length)];
+                    tiles.Add(tilePos, Instantiate(effectTile, tilePos, Quaternion.identity).GetComponent<Tile>());
+                }
             }
         }
     }
@@ -176,7 +180,7 @@ public class TileManager : MonoBehaviour
     public static Tile RandomFloorTile()
     {
         Tile output = defaultTile;
-        while(output is Wall)
+        while (output is Wall)
         {
             output = tiles[tiles.Keys.ElementAt(Random.Range(0, tiles.Count))];
         }
