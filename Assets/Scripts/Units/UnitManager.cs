@@ -8,9 +8,11 @@ public class UnitManager : MonoBehaviour
 {
     List<UnitController> allUnits = new List<UnitController>();
     List<UnitController> nextUnits;
-    [SerializeField] Text tempTurnOrderDisplay;
     [SerializeField] List<GameObject> possibleEnemies = new List<GameObject>();
     UnitController mostRecentAlly;
+    //I do not currently have code to dynamically generate more containters,
+    //so leave this at 5 for now unless you change that
+    int unitsToDisplay = 5;
 
     public event Alert onTurnStart;
 
@@ -93,7 +95,6 @@ public class UnitManager : MonoBehaviour
             return;
         }
 
-        string testOutput = "";
         nextUnits = new List<UnitController>();
         List<UnitController> tempList = new List<UnitController>(allUnits);
         Dictionary<UnitController, int> occurrenceList = new Dictionary<UnitController, int>();
@@ -122,15 +123,6 @@ public class UnitManager : MonoBehaviour
                     {
                         occurrenceList[unit] += 1;
                     }
-
-                    testOutput += unit.name;
-
-                    if (unit is EnemyController)
-                    {
-                        testOutput += " (Enemy)";
-                    }
-
-                    testOutput += "\n";
                     break;
                 }
             }
@@ -139,9 +131,9 @@ public class UnitManager : MonoBehaviour
                 ++modifier;
             }
 
-        } while (nextUnits.Count < 5);
+        } while (nextUnits.Count < unitsToDisplay);
 
-        tempTurnOrderDisplay.text = testOutput;
+        References.TurnOrderVisualizer.UpdateVisuals(nextUnits);
     }
     void NextTurn()
     {

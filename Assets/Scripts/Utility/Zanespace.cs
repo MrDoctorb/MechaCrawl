@@ -6,10 +6,11 @@ namespace Zanespace
     public static class References
     {
         public const int ACTIONTHRESHOLD = 10;
-        public static float timeBetweenMove = .25f;
+        public static float timeBetweenMove = .5f;//Add a setting to change this speed
         public static UnitManager uManager;
         public static TileManager tManager;
         public static ActionSelectMenu actionSelectMenu;
+        public static TurnOrderVisuals TurnOrderVisualizer;
         public static Color allyOutline = new Color(40/255f, 99/255f, 221/255f);
         public static Color enemyOutline = new Color(64/255f, 16/255f, 16/255f);
     }
