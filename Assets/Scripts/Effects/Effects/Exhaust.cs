@@ -13,6 +13,6 @@ public class Exhaust : Effect
 
     public override string Description()
     {
-        return "reduced turn order by " + amount + " points";
+        return "reduces turn order by " + amount + " points";
     }
 }

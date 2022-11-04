@@ -28,9 +28,20 @@ public class TileManager : MonoBehaviour
     {
         References.tManager = this;
         defaultTile = References.tManager.GetComponent<Wall>();
+        CleanStatic();
         NewFloor();
         References.uManager.EndTurn();
     }
+
+    void CleanStatic()
+    {
+        tiles.Clear();
+        roomTiles.Clear();
+        hallwayTiles.Clear();
+        connectorTiles.Clear();
+        wallTiles.Clear();
+    }
+
     public void NewFloor()
     {
         onLevelLoadStart?.Invoke();

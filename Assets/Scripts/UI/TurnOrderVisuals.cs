@@ -52,7 +52,7 @@ public class TurnOrderVisuals : MonoBehaviour
 
     IEnumerator ChangeSprites(List<UnitController> units)
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.25f);
         for (int i = 0; i < units.Count; i++)
         {
             containers[i].SetTrigger("Reset");

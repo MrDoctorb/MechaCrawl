@@ -135,11 +135,18 @@ public abstract class Tile : MonoBehaviour
         float brightest = .2f;
         foreach (LightSource source in lightSources)
         {
-            float newLight = (Mathf.Abs(source.brightness -Functions.GridDistance(source.transform.position, transform.position))
-                /(float)source.brightness) + .2f;
-            if (newLight > brightest)
+            if(source != null)
             {
-                brightest = newLight;
+                float newLight = (Mathf.Abs(source.brightness -Functions.GridDistance(source.transform.position, transform.position))
+                    /(float)source.brightness) + .2f;
+                if (newLight > brightest)
+                {
+                    brightest = newLight;
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Hey you have a null Light source happening");
             }
         }
         if (brightest != lightLevel)

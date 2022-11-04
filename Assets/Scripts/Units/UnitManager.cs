@@ -6,6 +6,9 @@ using Zanespace;
 
 public class UnitManager : MonoBehaviour
 {
+    //VERY TEMPORARY
+    [SerializeField] GameObject menu;
+
     List<UnitController> allUnits = new List<UnitController>();
     List<UnitController> nextUnits;
     [SerializeField] List<GameObject> possibleEnemies = new List<GameObject>();
@@ -176,8 +179,7 @@ public class UnitManager : MonoBehaviour
 
     private IEnumerator BetweenTurns()
     {
-        // yield return new WaitForEndOfFrame();
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForEndOfFrame();
         foreach (UnitController unit in allUnits)
         {
             unit.actionPoints += unit.speed / AmountOfUnits();
@@ -193,5 +195,18 @@ public class UnitManager : MonoBehaviour
     public UnitController GetMostRecentUnit()
     {
         return nextUnits[0];
+    }
+
+    public void CheckLossState(UnitController justDead)
+    {
+        foreach(UnitController unit in FindObjectsOfType<UnitController>())
+        {
+            if(!(unit is EnemyController) && justDead != unit)
+            {
+                return;
+            }
+        }
+
+        menu.SetActive(true);
     }
 }

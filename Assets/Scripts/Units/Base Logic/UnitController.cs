@@ -35,6 +35,7 @@ public class UnitController : MonoBehaviour, IComparable
     private void OnEnable()
     {
         rend = GetComponent<SpriteRenderer>();
+        GetComponent<Animator>().enabled = true;
         if (gameObject.name.Contains("(Clone)"))
         {
             gameObject.name = gameObject.name.Replace("(Clone)", "");
@@ -43,6 +44,7 @@ public class UnitController : MonoBehaviour, IComparable
         {
             SetVisibility(true);
         }
+
 
         References.uManager.AddUnit(this);
     }
@@ -178,16 +180,17 @@ public class UnitController : MonoBehaviour, IComparable
             if (this is EnemyController)
             {
                 enabled = false;
+                GetComponent<Animator>().enabled = false;
             }
             else
             {
                 hp = -1;
             }
-            return;
         }
         if (hp < 0)
         {
             onDeath?.Invoke();
+            References.uManager.CheckLossState(this);
             gameObject.SetActive(false);
             Destroy(gameObject);
             return;
