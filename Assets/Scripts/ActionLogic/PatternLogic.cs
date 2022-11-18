@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class PatternLogic
 {
-    public abstract Vector2[] Pattern(Vector2 startPos);
+    public abstract Vector2[][] Pattern(Vector2 startPos);
 
     public abstract string Description();
 }

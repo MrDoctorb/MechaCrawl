@@ -103,6 +103,13 @@ namespace Zanespace
             return squares.ToArray();
         }
 
+        /// <summary>
+        /// Returns all tiles within specified distances
+        /// </summary>
+        /// <param name="origin">The center tile</param>
+        /// <param name="outerRadius">the maximum distance tile</param>
+        /// <param name="innerRadius">the minimum distance tile</param>
+        /// <returns></returns>
         public static Vector2[] Range(Vector2 origin, int outerRadius, int innerRadius = 0)
         {
             List<Vector2> squares = new List<Vector2>();

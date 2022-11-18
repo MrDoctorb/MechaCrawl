@@ -9,7 +9,7 @@ public class ActionButtonDisplay : MonoBehaviour, IPointerEnterHandler, IPointer
 {
     public string description;
     [SerializeField] GameObject descriptionBoxSpawn;
-    GameObject descriptionBoxRef;
+    static GameObject descriptionBoxRef;
     RectTransform canvas;
     void Start()
     {
@@ -32,6 +32,10 @@ public class ActionButtonDisplay : MonoBehaviour, IPointerEnterHandler, IPointer
     public void OnPointerEnter(PointerEventData eventData)
     {
         //TEMPORARY ASSIGNMENT, CHANGE LATER
+        if (descriptionBoxRef !=  null)
+        {
+            Destroy(descriptionBoxRef);
+        }
         descriptionBoxRef = Instantiate(descriptionBoxSpawn, canvas);
         descriptionBoxRef.transform.GetChild(0).GetComponent<Text>().text = description;
     }

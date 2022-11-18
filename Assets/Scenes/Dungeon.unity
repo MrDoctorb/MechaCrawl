@@ -1843,10 +1843,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 1807284797}
   pause: {fileID: 564748029}
+  enemiesPerFloor: 4
   possibleEnemies:
-  - {fileID: 6784092201675306802, guid: 0b36132bfb996684faa87f80dcf7626b, type: 3}
-  - {fileID: 3433504880051687769, guid: 18802c7cfa6e2a540a3edf947228bf16, type: 3}
-  - {fileID: 845655628891811297, guid: ec535337927370048bac086c07c3980e, type: 3}
+  - enemyToSpawn: {fileID: 845655628891811297, guid: ec535337927370048bac086c07c3980e, type: 3}
+    weight: 1
+  - enemyToSpawn: {fileID: 3433504880051687769, guid: 18802c7cfa6e2a540a3edf947228bf16, type: 3}
+    weight: 2
+  - enemyToSpawn: {fileID: 6784092201675306802, guid: 0b36132bfb996684faa87f80dcf7626b, type: 3}
+    weight: 4
 --- !u!114 &777119964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1859,13 +1863,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 514fb1588d073864c8d0f78a57101da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 30
-  height: 30
-  maxRoomWidth: 6
-  maxRoomHeight: 6
+  width: 20
+  height: 20
+  maxRoomWidth: 5
+  maxRoomHeight: 5
   minRoomWidth: 3
   minRoomHeight: 3
-  maxRoomAttempts: 30
+  maxRoomAttempts: 15
   roomsAreSeperate: 1
   minPathLength: 5
   straightPathChance: 0.75

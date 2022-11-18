@@ -5,9 +5,9 @@ using Zanespace;
 
 public class DynamicLine : PatternLogic
 {
-    public override Vector2[] Pattern(Vector2 startPos)
+    public override Vector2[][] Pattern(Vector2 startPos)
     {
-        return TilePatterns.Line(startPos, startPos + new Vector2(-3, -3));
+        return new Vector2[][] { TilePatterns.Line(startPos, startPos + new Vector2(-3, -3)) };
     }
 
     public override string Description()

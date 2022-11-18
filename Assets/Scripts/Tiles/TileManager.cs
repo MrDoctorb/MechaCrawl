@@ -24,6 +24,20 @@ public class TileManager : MonoBehaviour
     public Alert onLevelLoadStart;
     public Alert onLevelLoadEnd;
 
+    private void Update()
+    {
+
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            foreach (Tile tile in FindObjectsOfType<Tile>())
+            {
+                tile.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        }
+#endif
+    }
+
     void Start()
     {
         References.tManager = this;
@@ -151,8 +165,8 @@ public class TileManager : MonoBehaviour
         {
             if (Random.Range(0, 50) == 0)
             {
-                //Only remove base tiles
-                if (TileAt(tilePos).GetType() == typeof(Tile))
+                //Don't remove entrance or exit
+                if (!(TileAt(tilePos) is Entrance || TileAt(tilePos) is Exit))
                 {
                     Destroy(TileAt(tilePos).gameObject);
                     tiles.Remove(tilePos);

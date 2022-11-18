@@ -43,12 +43,15 @@ public abstract class MoveLogic : ActionLogic
 
     IEnumerator MovePath(Vector2[] path)
     {
-        foreach (Vector2 pos in path)
+        if(path != null)
         {
-            myUnit.MoveToTile(pos);
+            foreach (Vector2 pos in path)
+            {
+                myUnit.MoveToTile(pos);
 
-            //This also shouldn't be hard coded I don't think
-            yield return new WaitForSeconds(References.timeBetweenMove);
+                //This also shouldn't be hard coded I don't think
+                yield return new WaitForSeconds(References.timeBetweenMove);
+            }
         }
 
         if(myUnit.move == this)

@@ -181,11 +181,15 @@ public abstract class Tile : MonoBehaviour
         }
         else
         {
-            if(gameObject == null)
+            try
             {
-                Debug.Log("Huh");
+
+                rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, percentage);
             }
-            rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, percentage);
+            catch
+            {
+                //print("huh");
+            }
         }
 
         lightLevel = percentage;

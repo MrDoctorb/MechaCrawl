@@ -6,14 +6,21 @@ using Zanespace;
 public class Line : PatternLogic
 {
     [SerializeField] int range;
-    public override Vector2[] Pattern(Vector2 startPos)
+    public override Vector2[][] Pattern(Vector2 startPos)
     {
-        List<Vector2> possiblePos = new List<Vector2>();
-        for(int i = 0; i < range; ++i)
+        List<Vector2[]> pattern = new List<Vector2[]>();
+        for (int i = 0; i < 4; ++i)
         {
-            possiblePos.Add(startPos + new Vector2(0, i + 1));
+            Vector2 offset = Functions.DirectionToVector((Direction)i);
+            List<Vector2> tiles = new List<Vector2>();
+            for (int j = 0; j < range; ++j)
+            {
+                Vector2 possiblePos = startPos + (offset * (j + 1));
+                tiles.Add(possiblePos);
+            }
+            pattern.Add(tiles.ToArray());
         }
-        return possiblePos.ToArray();
+        return pattern.ToArray();
     }
 
     public override string Description()

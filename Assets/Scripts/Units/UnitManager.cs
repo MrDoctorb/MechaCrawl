@@ -22,7 +22,8 @@ public class UnitManager : MonoBehaviour
 
     List<UnitController> allUnits = new List<UnitController>();
     List<UnitController> nextUnits;
-    [SerializeField] List<GameObject> possibleEnemies = new List<GameObject>();
+    [SerializeField] int enemiesPerFloor;
+    [SerializeField] List<EnemySpawn> possibleEnemies = new List<EnemySpawn>();
     UnitController mostRecentAlly;
     //I do not currently have code to dynamically generate more containters,
     //so leave this at 5 for now unless you change that
@@ -37,6 +38,9 @@ public class UnitManager : MonoBehaviour
 
     void Start()
     {
+        //THIS SHOULDN'T BE ASSIGNED HERE
+        Application.targetFrameRate = 60;
+
         //Set inital ally to the player
         mostRecentAlly = allUnits[0];
         CalculateNextUnits();
@@ -51,9 +55,25 @@ public class UnitManager : MonoBehaviour
 
     void SpawnEnemies()
     {
-        Instantiate(possibleEnemies[Random.Range(0, possibleEnemies.Count)], Vector2.zero, Quaternion.identity);
-        Instantiate(possibleEnemies[Random.Range(0, possibleEnemies.Count)], Vector2.zero, Quaternion.identity);
-        Instantiate(possibleEnemies[Random.Range(0, possibleEnemies.Count)], Vector2.zero, Quaternion.identity);
+        int totalWeight = 0;
+        for(int i = 0; i < possibleEnemies.Count; i++)
+        {
+            totalWeight += possibleEnemies[i].weight;
+        }
+
+        for(int i = 0; i < enemiesPerFloor; i++)
+        {
+            int rand = Random.Range(0, totalWeight);
+            for(int j = 0; j < possibleEnemies.Count; j++)
+            {
+                rand -= possibleEnemies[j].weight;
+                if(rand < 0)
+                {
+                    Instantiate(possibleEnemies[j].enemyToSpawn, Vector2.zero, Quaternion.identity);
+                    break;
+                }
+            }
+        }
     }
 
     void DeleteEnemies()
@@ -220,4 +240,11 @@ public class UnitManager : MonoBehaviour
 
         menu.SetActive(true);
     }
+}
+
+[System.Serializable]
+public class EnemySpawn
+{
+    public GameObject enemyToSpawn;
+    public int weight;
 }
