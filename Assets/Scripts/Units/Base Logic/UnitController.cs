@@ -233,7 +233,10 @@ public class UnitController : MonoBehaviour, IComparable
     public void SetVisibility(bool visible)
     {
         this.visible = visible;
-        rend.enabled = visible;
+        if(rend != null)
+        {
+            rend.enabled = visible;
+        }
         onVisibilityChange?.Invoke();
     }
 }

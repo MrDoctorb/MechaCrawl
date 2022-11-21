@@ -135,7 +135,7 @@ public abstract class Tile : MonoBehaviour
         float brightest = .2f;
         foreach (LightSource source in lightSources)
         {
-            if(source != null)
+            if(source != null && transform != null)
             {
                 float newLight = (Mathf.Abs(source.brightness -Functions.GridDistance(source.transform.position, transform.position))
                     /(float)source.brightness) + .2f;

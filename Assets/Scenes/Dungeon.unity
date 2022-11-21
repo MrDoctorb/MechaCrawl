@@ -915,7 +915,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -20.79}
+  m_AnchoredPosition: {x: 0, y: -20.789978}
   m_SizeDelta: {x: 800, y: 200}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &344216074
@@ -3150,13 +3150,21 @@ MonoBehaviour:
       data:
         range: 1
     00000001:
+      type: {class: Exhaust, ns: , asm: Assembly-CSharp}
+      data:
+        amount: 3
+    00000002:
+      type: {class: ApplyStatus, ns: , asm: Assembly-CSharp}
+      data:
+        effects:
+        - id: 3
+        occurrences: 3
+        triggerCondition: 1
+        decrementCondition: 1
+    00000003:
       type: {class: Damage, ns: , asm: Assembly-CSharp}
       data:
         damage: 1
-    00000002:
-      type: {class: Exhaust, ns: , asm: Assembly-CSharp}
-      data:
-        amount: 1
 --- !u!95 &1480741519
 Animator:
   serializedVersion: 3
@@ -3601,7 +3609,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -20.79}
+  m_AnchoredPosition: {x: 0, y: -20.789978}
   m_SizeDelta: {x: 800, y: 200}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1855420792

@@ -3,19 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Status : Effect
+public class Status : MonoBehaviour
 {
-    [SelectType] [SerializeReference] Effect[] effects;
+    Effect[] effects;
     UnitController target;
-    [SerializeField] int occurrences;
-    [SerializeField] AlertType triggerCondition;
-    [SerializeField] AlertType decrementCondition;
+    int occurrences;
+    AlertType triggerCondition;
+    AlertType decrementCondition;
 
-    public override void ApplyTo(UnitController unit)
+    public void Setup(Effect[] effects, int occurrences, AlertType trigger, AlertType decrement)
     {
-        target = unit;
+        this.effects = effects;
+        this.occurrences = occurrences;
+        triggerCondition = trigger;
+        decrementCondition = decrement;
+        target = GetComponent<UnitController>();
         SubscribeFunction(ApplyEffects, triggerCondition);
         SubscribeFunction(Decrement, decrementCondition);
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeFunction(ApplyEffects, triggerCondition);
+        UnsubscribeFunction(Decrement, decrementCondition);
     }
 
     void ApplyEffects()
@@ -31,7 +41,7 @@ public class Status : Effect
         occurrences--;
         if(occurrences <= 0)
         {
-            
+            Destroy(this);
         }
     }
 
@@ -72,12 +82,12 @@ public class Status : Effect
                 break;
         }
     }
-
+/*
 
     public override string Description()
     {
         throw new System.NotImplementedException();
-    }
+    }*/
 }
 
 public enum AlertType
