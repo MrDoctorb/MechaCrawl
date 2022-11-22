@@ -4,18 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 public class HealthDisplay : MonoBehaviour
 {
-    Text text;
+    // Text text;
+    Slider slider;
     UnitController unit;
+
+    Transform segmentContainer;
+    GameObject segment;
 
     void OnEnable()
     {
-        if(unit == null)
+        if (unit == null)
         {
             unit = GetComponentInParent<UnitController>();
         }
-        if(text == null)
+        if (slider == null)
         {
-            text = GetComponent<Text>();
+            slider = GetComponent<Slider>();
+            slider.maxValue = unit.maxHP;
+        }
+        if(segmentContainer == null)
+        {
+            SegmentSetup();
         }
 
         unit.onVisibilityChange += SetVisibility;
@@ -30,18 +39,33 @@ public class HealthDisplay : MonoBehaviour
 
     void DisplayHealth()
     {
-        text.text = unit.hp.ToString();
+        slider.value = unit.hp;
     }
 
     void SetVisibility()
     {
-        if(unit.visible)
+        if (unit.visible)
         {
-            text.color = Color.white;
+            slider.gameObject.SetActive(true);
         }
         else
         {
-            text.color  = Color.clear;
+            slider.gameObject.SetActive(false);
+        }
+    }
+
+    void SegmentSetup()
+    {
+        segmentContainer = transform.GetComponentInChildren<HorizontalLayoutGroup>().transform;
+        segment = segmentContainer.GetChild(0).gameObject;
+        for(int i = 1; i < unit.maxHP; i++)
+        {
+            Instantiate(segment, segmentContainer);
+        }
+
+        if (unit.maxHP > 10)
+        {
+            segmentContainer.GetComponent<HorizontalLayoutGroup>().childControlWidth = true;
         }
     }
 }
