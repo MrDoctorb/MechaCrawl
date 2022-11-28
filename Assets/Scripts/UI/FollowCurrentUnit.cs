@@ -20,12 +20,12 @@ public class FollowCurrentUnit : MonoBehaviour
         if(target != null)
         {
 
-            target.onEndMove -= MoveTo;
+            target.onEndMoveSingle -= MoveTo;
             target.onStartTurn -= MoveTo;
         }
 
         target = manager.GetMostRecentUnit();
-        target.onEndMove += MoveTo;
+        target.onEndMoveSingle += MoveTo;
         target.onStartTurn += MoveTo;
 
     }

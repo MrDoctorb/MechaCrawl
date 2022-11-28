@@ -21,8 +21,10 @@ public class UnitController : MonoBehaviour, IComparable
 
 
     //onMove Alerts called for movement between every tile
-    public event Alert onStartMove;
-    public event Alert onEndMove;
+    public event Alert onStartMoveSingle;
+    public event Alert onEndMoveSingle;
+    public event Alert onStartMoveTotal;
+    public event Alert onEndMoveTotal;
     public event Alert onStartTurn;
     public event Alert onEndTurn;
     public event Alert onTakeDamage;
@@ -129,14 +131,27 @@ public class UnitController : MonoBehaviour, IComparable
         }
     }
 
+    public IEnumerator MovePath(Vector2[] path)
+    {
+        onStartMoveTotal?.Invoke();
+        foreach (Vector2 pos in path)
+        {
+            MoveToTile(pos);
+
+            //This also shouldn't be hard coded I don't think
+            yield return new WaitForSeconds(References.timeBetweenMove);
+        }
+        onEndMoveTotal?.Invoke();
+    }
+
     public virtual void MoveToTile(Vector2 pos)
     {
         if (TileManager.IsTileOpen(pos))
         {
             //Only invoke onMove if something is subscribed to it
-            onStartMove?.Invoke();
+            onStartMoveSingle?.Invoke();
             TileManager.TileAt(pos).Enter(this);
-            onEndMove?.Invoke();
+            onEndMoveSingle?.Invoke();
         }
     }
 

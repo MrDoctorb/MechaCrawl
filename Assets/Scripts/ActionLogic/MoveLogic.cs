@@ -45,13 +45,7 @@ public abstract class MoveLogic : ActionLogic
     {
         if(path != null)
         {
-            foreach (Vector2 pos in path)
-            {
-                myUnit.MoveToTile(pos);
-
-                //This also shouldn't be hard coded I don't think
-                yield return new WaitForSeconds(References.timeBetweenMove);
-            }
+           yield return StartCoroutine(myUnit.MovePath(path));
         }
 
         if(myUnit.move == this)

@@ -56,10 +56,10 @@ public class Status : MonoBehaviour
                 target.onEndTurn += method.Invoke;
                 break;
             case AlertType.MoveStart:
-                target.onStartMove += method.Invoke;
+                target.onStartMoveSingle += method.Invoke;
                 break;
             case AlertType.MoveEnd:
-                target.onEndMove += method.Invoke;
+                target.onEndMoveSingle += method.Invoke;
                 break;
         }
     }
@@ -75,10 +75,10 @@ public class Status : MonoBehaviour
                 target.onEndTurn -= method.Invoke;
                 break;
             case AlertType.MoveStart:
-                target.onStartMove -= method.Invoke;
+                target.onStartMoveSingle -= method.Invoke;
                 break;
             case AlertType.MoveEnd:
-                target.onEndMove -= method.Invoke;
+                target.onEndMoveSingle -= method.Invoke;
                 break;
         }
     }

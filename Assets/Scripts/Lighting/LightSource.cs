@@ -14,7 +14,7 @@ public class LightSource : MonoBehaviour
     private void OnEnable()
     {
         unit = GetComponent<UnitController>();
-        unit.onEndMove += UpdateLighting;
+        unit.onEndMoveSingle += UpdateLighting;
         unit.onStartTurn += UpdateLighting;
         litTiles = new List<Tile>();
         if (unit is EnemyController)
@@ -34,7 +34,7 @@ public class LightSource : MonoBehaviour
     private void OnDisable()
     {
         
-        unit.onEndMove -= UpdateLighting;
+        unit.onEndMoveSingle -= UpdateLighting;
         unit.onStartTurn -= UpdateLighting;
         References.tManager.onLevelLoadStart -= ClearLighting;
 
