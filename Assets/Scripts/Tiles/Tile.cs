@@ -14,11 +14,33 @@ public abstract class Tile : MonoBehaviour
     protected SpriteRenderer rend;
     private float lightLevel = 0;
 
-    public abstract void EnterEffect();
+   [SelectType] [SerializeReference] Effect[] enterEffects = new Effect[0], stopEffects = new Effect[0], exitEffects = new Effect[0];
 
-    public abstract void StopEffect();
+    public virtual void EnterEffect()
+    {
+        foreach (Effect effect in enterEffects) 
+        {
+            print("B");
+            effect.ApplyTo(unit);
+            print("C");
+        }
+    }
 
-    public abstract void ExitEffect();
+    public virtual void StopEffect()
+    {
+        foreach(Effect effect in stopEffects)
+        {
+            effect.ApplyTo(unit);
+        }
+    }
+
+    public virtual void ExitEffect()
+    {
+        foreach(Effect effect in  exitEffects)
+        {
+            effect.ApplyTo(unit);
+        }
+    }
 
     void OnEnable()
     {
@@ -30,6 +52,7 @@ public abstract class Tile : MonoBehaviour
     {
         SetVisibility(0);
         rend.sortingOrder = -(int)transform.position.y;
+
     }
 
     public void Enter(UnitController newUnit)

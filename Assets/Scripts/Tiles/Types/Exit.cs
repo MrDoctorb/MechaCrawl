@@ -5,15 +5,6 @@ using Zanespace;
 
 public class Exit : Tile
 {
-
-    public override void EnterEffect()
-    {
-    }
-
-    public override void ExitEffect()
-    {
-    }
-
     public override void StopEffect()
     {
         if(unit.GetType() != typeof(EnemyController))

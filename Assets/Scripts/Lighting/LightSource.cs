@@ -9,7 +9,7 @@ public class LightSource : MonoBehaviour
     //Distance of the light
     public int brightness;
     UnitController unit;
-    List<Tile> litTiles;
+    List<Tile> litTiles = new List<Tile>();
 
     private void OnEnable()
     {
@@ -33,14 +33,13 @@ public class LightSource : MonoBehaviour
 
     private void OnDisable()
     {
-        
+
         unit.onEndMoveSingle -= UpdateLighting;
         unit.onStartTurn -= UpdateLighting;
         References.tManager.onLevelLoadStart -= ClearLighting;
 
         foreach (Tile tile in litTiles)
         { 
-
             tile.onLightChange -= UpdateLighting;
             tile.lightSources.Remove(this);
             tile.UpdateLighting();
