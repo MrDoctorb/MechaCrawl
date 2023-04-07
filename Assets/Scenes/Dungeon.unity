@@ -1709,6 +1709,7 @@ MonoBehaviour:
   wallref: {fileID: 7378640997328338620, guid: efc443a21d00c0e4c9405394ae1426f3, type: 3}
   effectTiles:
   - {fileID: 477498964732154283, guid: 92920264858ce2d49869eba654f05034, type: 3}
+  - {fileID: 477498964732154283, guid: d3896707308ad3546afacaddab13bd59, type: 3}
   stairUpSprite: {fileID: 21300000, guid: 3e1e18224802cff4190c3614f7b9e1b1, type: 3}
   stairDownSprite: {fileID: 21300000, guid: ae4374a772f441841af547ae997a50d4, type: 3}
 --- !u!4 &777119962
@@ -3124,7 +3125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5f8bc4f4efbd1438bfc86190cc2476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brightness: 4
+  brightness: 5
 --- !u!114 &1480741523
 MonoBehaviour:
   m_ObjectHideFlags: 0
